@@ -10,7 +10,7 @@ public class PagoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private int idpago;
+    private int id;
 
     @Basic
     @Column(name = "posicionamiento")
@@ -31,7 +31,7 @@ public class PagoEntity {
         if (getClass() != obj.getClass())
             return false;
         PagoEntity other = (PagoEntity) obj;
-        if (idpago != other.idpago)
+        if (id != other.id)
             return false;
         return true;
     }
@@ -40,7 +40,7 @@ public class PagoEntity {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + idpago;
+        result = prime * result + id;
         return result;
     }
 

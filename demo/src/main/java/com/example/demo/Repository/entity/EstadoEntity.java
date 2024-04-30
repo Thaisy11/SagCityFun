@@ -11,7 +11,7 @@ public class EstadoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private int idestado;
+    private int id;
     @Basic
     @Column(name = "estado")
     private String estado;
@@ -29,7 +29,7 @@ public class EstadoEntity {
         if (getClass() != obj.getClass())
             return false;
         EstadoEntity other = (EstadoEntity) obj;
-        if (idestado != other.idestado)
+        if (id != other.id)
             return false;
         return true;
     }
@@ -37,7 +37,7 @@ public class EstadoEntity {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + idestado;
+        result = prime * result + id;
         return result;
     }
     public EstadoEntity() {

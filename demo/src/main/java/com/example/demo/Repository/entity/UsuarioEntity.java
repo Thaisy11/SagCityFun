@@ -13,7 +13,7 @@ public class UsuarioEntity {
  @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private int idusuario;
+    private int id;
     @Basic
     @Column(name = "nombre")
     private String nombre;
@@ -39,7 +39,7 @@ public class UsuarioEntity {
         if (getClass() != obj.getClass())
             return false;
         UsuarioEntity other = (UsuarioEntity) obj;
-        if (idusuario != other.idusuario)
+        if (id != other.id)
             return false;
         return true;
     }
@@ -48,7 +48,7 @@ public class UsuarioEntity {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + idusuario;
+        result = prime * result + id;
         return result;
     }
 

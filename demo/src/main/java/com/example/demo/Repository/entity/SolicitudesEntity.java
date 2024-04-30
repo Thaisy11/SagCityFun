@@ -12,7 +12,7 @@ public class SolicitudesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private int idsolicitudes;
+    private int id;
     @Basic
     @Column(name = "nombre_evento")
     private String nombre_evento;
@@ -55,7 +55,7 @@ public class SolicitudesEntity {
         if (getClass() != obj.getClass())
             return false;
         SolicitudesEntity other = (SolicitudesEntity) obj;
-        if (idsolicitudes != other.idsolicitudes)
+        if (id != other.id)
             return false;
         return true;
     }
@@ -63,7 +63,7 @@ public class SolicitudesEntity {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + idsolicitudes;
+        result = prime * result + id;
         return result;
     }
     public SolicitudesEntity() {

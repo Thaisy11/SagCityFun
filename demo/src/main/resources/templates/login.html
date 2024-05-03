@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>HTML</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/estilo.css}" />
+  <link rel="stylesheet" th:href="@{/css/estilo_gran.css}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Wallpoet" />
+</head>
+
+<body>
+  <header>
+    <div>
+      <img src="@{images/flecha.png}" alt="icono_volver">
+    </div>
+    <div>
+      <img src="@{images/logo.png}" alt="logo">
+    </div>
+    <section id="tit">
+      <h1>VIVE EL OCIO NOCTURNO</h1>
+
+    </section>
+  </header>
+  <nav>
+
+    <a href="home.html">PÁGINA PRINCIPAL</a>
+    <a href="eventos.html">EVENTOS</a>
+    <a href="login.html">LOGIN</a>
+    <a href="registro.html">REGISTRO</a>
+  </nav>
+
+  <main>
+    <section>
+      <h2>LOGIN</h2>
+    </section>
+    <form action="user" method="post">
+
+      <input type="text" placeholder="Email" name="Email" required>
+
+      <input type="password" placeholder="Password" name="psw" required>
+
+    
+    <a href="eventos.html">
+      <button><h2>ENTRAR</h2></button>
+  
+    </a>
+    
+  </form>
+  <p>¿No tienes cuenta? Registrate <a href="registro.html">aquí</a></p>
+ 
+  <a href="eventos.html">
+    <button><h2>ENTRAR COMO INVITADO</h2></button>
+
+  </a>
+  </main>
+  <footer>
+    <div>
+      <img src="@{images/CopyR.png}" alt="copyR">
+    </div>
+    <div><p>SaguntoCityFun de CityFun S.L.</p></div>
+    <div>
+      <img src="@{images/insta.png}" alt="insta">
+    </div>
+  </footer>
+
+
+</body>
+
+</html>

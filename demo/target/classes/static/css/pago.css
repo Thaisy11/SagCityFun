@@ -1,0 +1,28 @@
+@media (min-width: 800px) {
+    form{
+        margin: 0 auto;
+    }
+
+    form label {
+        font-family: roboto;
+        font-size: 20px;
+    }
+    
+    #pago input{
+        width: 400px;
+        margin: 10px;
+    }
+    form button{
+        width: auto;
+    }
+    #pagar{
+        height: 40px;
+        width: 40%;
+    }
+    form section{
+       margin-left: 60%;
+    }
+    .pago div{
+        margin: 20px;
+    }
+    }

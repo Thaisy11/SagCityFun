@@ -1,0 +1,131 @@
+@media (min-width: 800px) {
+  body {
+    min-height: auto;
+    background-color: #ffffff;
+    grid-template-rows: 2fr 1fr auto 0.5fr;
+    background-image: none;
+    text-align: center;
+  }
+
+  header {
+    background-image: url("../images/fondo.jpg");
+    background-size: cover;
+    background-position: 0% 25%;
+    grid-area: header;
+    justify-content: center;
+  }
+
+  header div:nth-of-type(1) {
+    width: 33%;  }
+  header section{
+    align-items: center;
+    display: flex;
+    width: 33%;
+
+  }
+  
+  header div:nth-child(2) {
+    order: 2;
+    margin: auto; 
+    width: 33%;
+
+  }
+
+  .boton {
+    width: 100%;
+    justify-self: center;
+  }
+
+
+
+  #inicio {
+    background-image: none;
+
+  }
+
+  #titulo {
+    display: none;
+
+  }
+  .nav{
+    display:inline-flex;
+  }
+
+  nav {
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  nav a {
+    font-size: 16px;
+
+  }
+
+  #tit {
+
+    display: flex;
+    color: #ffffff;
+  }
+
+  main {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 400px;
+
+
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #743DB2;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  button h2 {
+    color: #ffffff;
+  }
+
+
+
+  form {
+    margin: 30px;
+  }
+
+  article {
+    width: 60%;
+    height: 220px;
+    margin-bottom: 12px;
+
+  }
+
+  footer {
+    margin-top: 100px;
+    height: auto;
+    background-color: #743DB2;
+   /* position: fixed;*/
+    bottom: 0;
+    width: 100%;
+  }
+
+
+}

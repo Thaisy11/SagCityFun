@@ -1,4 +1,4 @@
-package com.example.demo.model;
+/*package com.example.demo.model;
 import java.io.Serializable;
 
 import com.example.demo.Repository.entity.UsuarioEntity;
@@ -51,3 +51,4 @@ public UsuarioDTO() {
 
 
 }
+*/

@@ -1,4 +1,4 @@
-package com.example.demo.model;
+/*package com.example.demo.model;
 import java.io.Serializable;
 
 import com.example.demo.Repository.entity.EstadoEntity;
@@ -33,4 +33,4 @@ public static EstadoEntity convertToEntity(EstadoDTO estadoDTO) {
         super();
     }
     
-    }
+    }*/

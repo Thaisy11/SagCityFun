@@ -15,6 +15,6 @@ import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
-public class EstadoRepository extends JpaRepository<PagoEntity, Integer>{
+public interface EstadoRepository extends JpaRepository<EstadoEntity, Long>{
     
 }

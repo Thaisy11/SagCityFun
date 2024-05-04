@@ -7,12 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.Repository.entity.UsuarioEntity;
 
 import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
-public class UsuarioRepository extends JpaRepository<UsuarioEntity, Integer>{
+public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long>{
 
 
     

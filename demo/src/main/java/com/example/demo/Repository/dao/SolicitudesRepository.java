@@ -14,7 +14,7 @@ import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
-public class SolicitudesRepository extends JpaRepository<SolicitudesEntity, Integer>{
+public interface SolicitudesRepository extends JpaRepository<SolicitudesEntity, Long>{
 
 
     

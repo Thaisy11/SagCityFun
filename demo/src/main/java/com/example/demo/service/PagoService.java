@@ -43,16 +43,21 @@ public class PagoService implements BaseService<PagoEntity> {
     @Transactional
 
     public PagoEntity update(Long id, PagoEntity entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        Optional<PagoEntity> optionalpago = pagorepository.findById(id);
+        PagoEntity pago = optionalpago.get();
+        pago = pagorepository.save(pago);
+        return pago;
     }
 
     @Override
     @Transactional
 
     public boolean delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        if(pagorepository.existsById(id)){
+            pagorepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 import com.example.demo.Repository.entity.EstadoEntity;
+import com.example.demo.Repository.entity.SolicitudesEntity;
 import com.example.demo.Repository.dao.EstadoRepository;
 import com.example.demo.Repository.entity.EstadoEntity;
 import jakarta.transaction.Transactional;
@@ -61,6 +62,30 @@ public class EstadoService implements BaseService<EstadoEntity> {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<EstadoEntity> findActivos() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findActivos'");
+    }
+
+    @Override
+    public List<EstadoEntity> findRechazados() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findRechazados'");
+    }
+
+    @Override
+    public List<EstadoEntity> findPasados() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findPasados'");
+    }
+
+    @Override
+    public List<EstadoEntity> findPendientes() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findPendientes'");
     }
 
      

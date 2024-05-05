@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.Repository.entity.PagoEntity;
+import com.example.demo.Repository.entity.SolicitudesEntity;
 import com.example.demo.Repository.dao.PagoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,30 @@ public class PagoService implements BaseService<PagoEntity> {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<PagoEntity> findActivos() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findActivos'");
+    }
+
+    @Override
+    public List<PagoEntity> findRechazados() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findRechazados'");
+    }
+
+    @Override
+    public List<PagoEntity> findPasados() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findPasados'");
+    }
+
+    @Override
+    public List<PagoEntity> findPendientes() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findPendientes'");
     }
 
 }

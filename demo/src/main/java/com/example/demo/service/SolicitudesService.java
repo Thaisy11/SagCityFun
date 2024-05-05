@@ -59,4 +59,28 @@ public class SolicitudesService implements BaseService<SolicitudesEntity> {
         return false;
     }
 
+    @Override
+    public List<SolicitudesEntity> findActivos() {
+        List<SolicitudesEntity> solicitudes = solicitudesRepository.activo();
+        return solicitudes;
+    }
+
+    @Override
+    public List<SolicitudesEntity> findRechazados() {
+        List<SolicitudesEntity> solicitudes = solicitudesRepository.rechazado();
+        return solicitudes;
+    }
+
+    @Override
+    public List<SolicitudesEntity> findPasados() {
+        List<SolicitudesEntity> solicitudes = solicitudesRepository.pasado();
+        return solicitudes;
+    }
+
+    @Override
+    public List<SolicitudesEntity> findPendientes() {
+        List<SolicitudesEntity> solicitudes = solicitudesRepository.pendiente();
+        return solicitudes;
+    }
+
 }

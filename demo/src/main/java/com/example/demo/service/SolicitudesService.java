@@ -10,7 +10,7 @@ import com.example.demo.Repository.entity.SolicitudesEntity;
 
 import jakarta.transaction.Transactional;
 
-public class SolicitudesService implements BaseService<SolicitudesEntity> {
+public class SolicitudesService implements Base2Service<SolicitudesEntity> {
 
     @Autowired
     SolicitudesRepository solicitudesRepository;

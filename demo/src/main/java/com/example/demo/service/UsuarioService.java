@@ -5,12 +5,13 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Service;
+
 import com.example.demo.Repository.dao.UsuarioRepository;
-import com.example.demo.Repository.entity.SolicitudesEntity;
 import com.example.demo.Repository.entity.UsuarioEntity;
 
 import jakarta.transaction.Transactional;
-
+@Service
 public class UsuarioService implements BaseService<UsuarioEntity> {
 
     @Autowired
@@ -66,30 +67,7 @@ public class UsuarioService implements BaseService<UsuarioEntity> {
 
     }
 
-    @Override
-    public List<UsuarioEntity> findActivos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findActivos'");
-    }
-
-    @Override
-    public List<UsuarioEntity> findRechazados() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findRechazados'");
-    }
-
-    @Override
-    public List<UsuarioEntity> findPasados() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findPasados'");
-    }
-
-    @Override
-    public List<UsuarioEntity> findPendientes() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findPendientes'");
-    }
-
+   
   
     
 }

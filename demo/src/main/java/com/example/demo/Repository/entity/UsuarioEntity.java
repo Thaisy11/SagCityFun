@@ -16,7 +16,7 @@ public class UsuarioEntity {
 
  @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+   /* @Column(name = "id")
     private Long id;
     @Basic
     @Column(name = "nombre")
@@ -32,7 +32,17 @@ public class UsuarioEntity {
     private String rol;
     
     @OneToMany(mappedBy = "idSolicitudes")
-    private Collection<SolicitudesEntity> solicitudbyUsuarCollection;
+    private Collection<SolicitudesEntity> solicitudbyUsuarCollection;*/
+  
+    private Long id;
+    private String nombre;
+    private String email;
+    private String contrasena;
+    private String rol;
+    
+
+
+
 
     @Override
     public boolean equals(Object obj) {

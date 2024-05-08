@@ -14,8 +14,10 @@
 <body>
   <header>
     <div>
-      <img src="@{images/flecha.png}" alt="icono_volver">
-    </div>
+      <a th:href="@{eventos.html}">
+          <img src="@{images/flecha.png}" alt="icono_volver">
+      </a>
+  </div>
     <div>
       <img src="@{images/logo.png}" alt="logo">
     </div>
@@ -27,10 +29,10 @@
 
   <nav>
 
-    <a href="home.html">PÁGINA PRINCIPAL</a>
-    <a href="eventos.html">EVENTOS</a>
-    <a href="login.html">LOGIN</a>
-    <a href="registro.html">REGISTRO</a>
+    <a th:href="@{home.html}">PÁGINA PRINCIPAL</a>
+    <a th:href="@{eventos.html}">EVENTOS</a>
+    <a th:href="@{login.html}">LOGIN</a>
+    <a th:href="@{registro.html}">REGISTRO</a>
   </nav>
 
   <main>
@@ -47,7 +49,7 @@
 
 
   
-      <a href="home.html">
+      <a th:href="@{home.html}">
         <button><h2>AÑADIR</h2></button>
   
       </a>  

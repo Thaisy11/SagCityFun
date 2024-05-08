@@ -16,7 +16,7 @@
 <body>
   <header>
     <div>
-      <a href="home.html">
+      <a th:href="@{home.html}">
           <img src="@{images/Salir.png}" alt="icono_volver">
       </a>
   </div>
@@ -31,10 +31,10 @@
   </section>
   </header>
   <nav>
-    <a href="admin_activos.html">ACTIVOS</a>
-    <a href="admin_pasados.html">PASADOS</a>
-    <a href="admin_solicitudes.html">SOLICITUDES</a>
-    <a href="admin_rechazados.html">RECHAZADOS</a>
+    <a th:href="@{admin_activos.html}">ACTIVOS</a>
+    <a th:href="@{admin_pasados.html}">PASADOS</a>
+    <a th:href="@{admin_solicitudes.html}">SOLICITUDES</a>
+    <a th:href="@{admin_rechazados.html}">RECHAZADOS</a>
   </nav>
 
 

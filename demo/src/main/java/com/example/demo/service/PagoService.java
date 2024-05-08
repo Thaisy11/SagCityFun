@@ -61,28 +61,4 @@ public class PagoService implements BaseService<PagoEntity> {
         return false;
     }
 
-    @Override
-    public List<PagoEntity> findActivos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findActivos'");
-    }
-
-    @Override
-    public List<PagoEntity> findRechazados() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findRechazados'");
-    }
-
-    @Override
-    public List<PagoEntity> findPasados() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findPasados'");
-    }
-
-    @Override
-    public List<PagoEntity> findPendientes() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findPendientes'");
-    }
-
 }

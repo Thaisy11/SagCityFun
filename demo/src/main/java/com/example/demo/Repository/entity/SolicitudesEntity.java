@@ -15,6 +15,7 @@ public class SolicitudesEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    /* 
     @Column(name = "id")
     private Long id;
     @Basic
@@ -46,7 +47,21 @@ public class SolicitudesEntity {
     
     @Basic
     @Column(name = "idestado")
+    private Long idestado;*/
+
+   
+    private Long id;
+    private String nombre_evento;
+    private String local;
+    private String dia;
+    private String hora;
+    private String precio;
+    private String link;
+    private Long idpago;
     private Long idestado;
+
+
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

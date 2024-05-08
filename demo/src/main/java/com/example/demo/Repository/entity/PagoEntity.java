@@ -12,7 +12,7 @@ import lombok.Setter;
 public class PagoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+   /* @Column(name = "id")
     private Long id;
 
     @Basic
@@ -22,6 +22,11 @@ public class PagoEntity {
 
       @Basic
     @Column(name = "idsolicitud")
+    private Long idsolicitud;*/
+
+
+    private Long id;
+    private int posicionamiento;
     private Long idsolicitud;
     @Override
     public boolean equals(Object obj) {

@@ -14,7 +14,9 @@
 <body>
   <header>
     <div>
-      <img src="@{images/Salir.png}" alt="icono_volver">
+      <a th:href="@{home.html}">
+          <img src="@{images/Salir.png}" alt="icono_volver">
+      </a>
   </div>
   <div>
     <img src="@{images/logo.png}" alt="logo">
@@ -26,10 +28,10 @@
   </section>
   </header>
   <nav>
-    <a href="admin_activos.html">ACTIVOS</a>
-    <a href="admin_pasados.html">PASADOS</a>
-    <a href="admin_solicitudes.html">SOLICITUDES</a>
-    <a href="admin_rechazados.html">RECHAZADOS</a>
+    <a th:href="@{admin_activos.html}">ACTIVOS</a>
+    <a th:href="@{admin_pasados.html}">PASADOS</a>
+    <a th:href="@{admin_solicitudes.html}">SOLICITUDES</a>
+    <a th:href="@{admin_rechazados.html}">RECHAZADOS</a>
   </nav>
 
 
@@ -46,8 +48,8 @@
     <article>evento</article>
     
     <div>
-      <a href="eventos.html">
-         <img src="@{images/flech_abajo.png}" alt="fle">  
+      <a th:href="@{eventos.html}">
+        <img src="@{images/flech_abajo.png}" alt="fle">  
        </a>
    </div>
  

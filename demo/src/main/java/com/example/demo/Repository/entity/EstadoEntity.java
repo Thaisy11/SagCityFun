@@ -12,13 +12,16 @@ import lombok.Setter;
 public class EstadoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+   /* @Column(name = "id")
     private Long id;
     @Basic
     @Column(name = "estado")
     private String estado;
     @Basic
     @Column(name = "idsolicitud")
+    private int idsolicitud;*/
+    private Long id;
+    private String estado;
     private int idsolicitud;
 
     @Override

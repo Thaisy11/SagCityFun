@@ -11,7 +11,7 @@ public class IndexController {
 
     @GetMapping("/SaguntoCityFun")
     public String mostrarIndex(Model model) {
-        return "home"; // Esto se traduce a "src/main/resources/templates/index.html"
+        return "home"; 
     }
 
     @GetMapping("/SaguntoCityFun/login")

@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.Repository.entity.SolicitudesEntity;
+
 
 
 public interface BaseService<E> {
@@ -17,11 +17,7 @@ public interface BaseService<E> {
 
     public boolean delete(Long id);
 
-    public List<E> findActivos();
-    public List<E> findRechazados();
-    public List<E> findPasados();
-    public List<E> findPendientes();
-
+    
 
 
 

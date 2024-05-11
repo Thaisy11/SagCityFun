@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <title>HTML</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" th:href="@{/css/estilo.css}" />
-  <link rel="stylesheet" th:href="@{/css/estilo_gran.css}" />
+  <link rel="stylesheet" th:href="@{/static/css/estilo.css}" />
+  <link rel="stylesheet" th:href="@{/static/css/estilo_gran.css}" />
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Roboto}" />
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Wallpoet}" />
   
@@ -39,25 +39,24 @@
     <section>
       <h2>LOGIN</h2>
     </section>
-    <form action="user" method="post">
+    <form id="login" action="post"><br>
+      <label>Email: </label><br>
+      <input type="text" id="log_mail" placeholder="Email"  name="email"><br>
+      <label>Password: </label><br>
+      <input type="text" id="log_pass"  placeholder="Email" name="pasword"><br>
 
-      <input type="text" placeholder="Email" name="Email" required>
 
-      <input type="password" placeholder="Password" name="psw" required>
-
-    
-    <a th:href="@{eventos.html}">
-      <button><h2>ENTRAR</h2></button>
-  
-    </a>
-    
-  </form>
+      <button type="submit" id="btnlog" name="Ingresar">Login</button>
+    </form>
+    <div id="avisos"></div>
   <p>¿No tienes cuenta? Registrate <a th:href="@{registro.html}">aquí</a></p>
  
   <a th:href="@{eventos.html}">
     <button><h2>ENTRAR COMO INVITADO</h2></button>
 
   </a>
+    <script src="@{/javaScript/base.js}"></script>
+    <script src="@{/JavaScript/login.js}"></script>
   </main>
   <footer>
     <div>

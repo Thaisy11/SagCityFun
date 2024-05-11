@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <title>HTML</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" th:href="@{/static/css/estilo.css}" />
-  <link rel="stylesheet" th:href="@{/static/css/estilo_gran.css}" />
+  <link rel="stylesheet" th:href="@{/css/estilo.css}" />
+  <link rel="stylesheet" th:href="@{/css/estilo_gran.css}" />
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Roboto}" />
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Wallpoet}" />
   
@@ -15,8 +15,8 @@
 <body>
   <header>
     <div>
-      <a th:href="@{home.html}">
-          <img src="@{/images/flecha.png}" alt="icono_volver">
+      <a th:href="@{home}">
+          <img th:src="@{/images/flecha.png}" alt="icono_volver">
       </a>
   </div>
     <div>
@@ -29,10 +29,10 @@
   </header>
   <nav>
 
-    <a th:href="@{home.html}">PÁGINA PRINCIPAL</a>
-    <a th:href="@{eventos.html}">EVENTOS</a>
-    <a th:href="@{login.html}">LOGIN</a>
-    <a th:href="@{registro.html}">REGISTRO</a>
+    <a th:href="@{home}">PÁGINA PRINCIPAL</a>
+    <a th:href="@{eventos}">EVENTOS</a>
+    <a th:href="@{login}">LOGIN</a>
+    <a th:href="@{registro}">REGISTRO</a>
   </nav>
 
   <main>
@@ -49,22 +49,22 @@
       <button type="submit" id="btnlog" name="Ingresar">Login</button>
     </form>
     <div id="avisos"></div>
-  <p>¿No tienes cuenta? Registrate <a th:href="@{registro.html}">aquí</a></p>
+  <p>¿No tienes cuenta? Registrate <a th:href="@{registro}">aquí</a></p>
  
-  <a th:href="@{eventos.html}">
-    <button><h2>ENTRAR COMO INVITADO</h2></button>
+  <a th:href="@{eventos}">
+    <button>ENTRAR COMO INVITADO</button>
 
   </a>
-    <script src="@{/javaScript/base.js}"></script>
+    <script th:src="@{/javaScript/base.js}"></script>
     <script src="@{/JavaScript/login.js}"></script>
   </main>
   <footer>
     <div>
-      <img src="@{/images/CopyR.png}" alt="copyR">
+      <img th:src="@{/images/CopyR.png}" alt="copyR">
     </div>
     <div><p>SaguntoCityFun de CityFun S.L.</p></div>
     <div>
-      <img src="@{/images/insta.png}" alt="insta">
+      <img th:src="@{/images/insta.png}" alt="insta">
     </div>
   </footer>
 

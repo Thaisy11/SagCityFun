@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <title>HTML</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" th:href="@{/static/css/estilo.css}" />
-  <link rel="stylesheet" th:href="@{/static/css/estilo_gran.css}" />
-  <link rel="stylesheet" th:href="@{/static/css/pago.css}" />
+  <link rel="stylesheet" th:href="@{css/estilo.css}" />
+  <link rel="stylesheet" th:href="@{css/estilo_gran.css}" />
+  <link rel="stylesheet" th:href="@{css/pago.css}" />
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Roboto}" />
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Wallpoet}" />
   
@@ -19,11 +19,11 @@
   <header>
     <div>
       <a th:href="@{eventos.html}">
-          <img src="@{/images/flecha.png}" alt="icono_volver">
+          <img th:src="@{/images/flecha.png}" alt="icono_volver">
       </a>
   </div>
     <div>
-      <img src="@{/images/logo.png}" alt="logo">
+      <img th:src="@{/images/logo.png}" alt="logo">
     </div>
     <section id="tit">
       <h1>VIVE EL OCIO NOCTURNO</h1>
@@ -32,10 +32,10 @@
   </header>
   <nav>
 
-    <a th:href="@{home.html}">PÁGINA PRINCIPAL</a>
-    <a th:href="@{eventos.html}">EVENTOS</a>
-    <a th:href="@{login.html}">LOGIN</a>
-    <a th:href="@{registro.html}">REGISTRO</a>
+    <a th:href="@{home}">PÁGINA PRINCIPAL</a>
+    <a th:href="@{eventos}">EVENTOS</a>
+    <a th:href="@{login}">LOGIN</a>
+    <a th:href="@{registro}">REGISTRO</a>
   </nav>
 
 
@@ -46,13 +46,13 @@
     <h5>MÉTODO DE PAGO</h5>
     <div class="pago">
       <div class="cuadrado">
-        <img src="@{/images/visa.png}" alt="visa">
+        <img th:src="@{/images/visa.png}" alt="visa">
       </div>
       <div class="cuadrado">
-        <img src="@{/images/mc.png}" alt="mastercard">
+        <img th:src="@{/images/mc.png}" alt="mastercard">
       </div>
       <div class="cuadrado">
-        <img src="@{/images/pay.png}" alt="paypal">
+        <img th:src="@{/images/pay.png}" alt="paypal">
       </div>
     </div>
 
@@ -63,17 +63,17 @@
         <h4><b>Tus datos de pago</b></h4>
       </label>
 
-      <label for="titu"><b>Titular de la tarjeta</b></label>
+      <label id="titu"><b>Titular de la tarjeta</b></label>
       <input type="text" placeholder="ej. Rubén Pérez Martínez" name="titular" required>
 
 
-      <label for="num"><b>Número de tarjeta</b></label>
+      <label id="num"><b>Número de tarjeta</b></label>
       <input type="text" placeholder="XXXX XXXX XXXX XXXX" name="fecha" required>
 
 
-      <label for="cad"><b>Caducidad de la tarjeta</b></label>
+      <label id="cad"><b>Caducidad de la tarjeta</b></label>
       <input type="number" placeholder="" name="caducidad" required>
-      <label for="ccv"><b>CCV</b></label>
+      <label id="ccv"><b>CCV</b></label>
       <input type="text" placeholder="" name="link" required>
 
       <section>
@@ -82,7 +82,7 @@
       </section>
 
       <button id="pagar">
-        <a th:href="@{eventos.html}">Pagar ahora
+        <a th:href="@{eventos}">Pagar ahora
       </button></a>
 
 
@@ -93,11 +93,11 @@
   </main>
   <footer>
     <div>
-      <img src="@{/images/CopyR.png}" alt="copyR">
+      <img th:src="@{/images/CopyR.png}" alt="copyR">
     </div>
     <div><p>SaguntoCityFun de CityFun S.L.</p></div>
     <div>
-      <img src="@{/images/insta.png}" alt="insta">
+      <img th:src="@{/images/insta.png}" alt="insta">
     </div>
   </footer>
 

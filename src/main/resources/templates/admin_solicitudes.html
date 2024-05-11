@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <title>HTML</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" th:href="@{/static/css/estilo.css}" />
-  <link rel="stylesheet" th:href="@{/static/css/estilo_gran.css}" />
+  <link rel="stylesheet" th:href="@{/css/estilo.css}" />
+  <link rel="stylesheet" th:href="@{/css/estilo_gran.css}" />
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Roboto}" />
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Wallpoet}" />
   
@@ -15,12 +15,12 @@
 <body>
   <header>
     <div>
-      <a th:href="@{home.html}">
+      <a th:href="@{home}">
           <img src="@{/images/Salir.png}" alt="icono_volver">
       </a>
   </div>
   <div>
-    <img src="@{/images/logo.png}" alt="logo">
+    <img th:src="@{/images/logo.png}" alt="logo">
 
   </div>
   <section id="tit">
@@ -29,42 +29,42 @@
   </section>
   </header>
   <nav>
-    <a th:href="@{admin_activos.html}">ACTIVOS</a>
-    <a th:href="@{admin_pasados.html}">PASADOS</a>
-    <a th:href="@{admin_solicitudes.html}">SOLICITUDES</a>
-    <a th:href="@{admin_rechazados.html}">RECHAZADOS</a>
+    <a th:href="@{admin_activos}">ACTIVOS</a>
+    <a th:href="@{admin_pasados}">PASADOS</a>
+    <a th:href="@{admin_solicitudes}">SOLICITUDES</a>
+    <a th:href="@{admin_rechazados}">RECHAZADOS</a>
   </nav>
 
 
 
   <main>
-    <section id="solicitudes">
+    <section>
       <h2 id="solicitudes">SOLICITUDES</h2>
     </section>
     <aside>
       
-      <img src="@{/images/flecha.png}" alt="flecha_dcha">
+      <img th:src="@{/images/flecha.png}" alt="flecha_dcha">
       <h4>fecha</h4>
-      <img src="@{/images/flecha_izq.png}" alt="flecha_izq">
+      <img th:src="@{/images/flecha_izq.png}" alt="flecha_izq">
     </aside>
     <article>evento</article>
     
     <div>
-      <a th:href="@{eventos.html}">
-         <img src="@{/images/flech_abajo.png}" alt="fle">  
+      <a th:href="@{eventos}">
+         <img th:src="@{/images/flech_abajo.png}" alt="fle">
        </a>
    </div>
  
   </main>
   <footer>
     <div>
-      <img src="@{/images/CopyR.png}" alt="copyR">
+      <img th:src="@{/images/CopyR.png}" alt="copyR">
     </div>
     <div>
       <p>SaguntoCityFun de <a>CityFun S.L.</a></p>
     </div>
     <div>
-      <img src="@{/images/insta.png}" alt="insta">
+      <img th:src="@{/images/insta.png}" alt="insta">
     </div>
   </footer>
 

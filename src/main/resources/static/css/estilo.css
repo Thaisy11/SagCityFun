@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Wallpoet');
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
+h1,
+h2,
+h3 {
+    color: white;
+    font-family: Wallpoet;
+    line-height: 160%;
+
+}
+
+h4,
+h5,
+h6,
+p,
+a {
+    color: white;
+    font-family: Comfortaa;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 11px;
+
+}
+#avisos {
+    margin-top: 40px;
+    height: 100px;
+    width: 100%;
+    color: rgb(83, 23, 23);
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h3,
+a {
+    font-size: 15px;
+}
+
+a {
+    font-size: 15px;
+}
+
+primary-0 {
+    color: #743DB2
+}
+
+primary-1 {
+    color: #FFF249
+}
+
+primary-2 {
+    color: #FF6F49
+}
+
+primary-3 {
+    color: #36BB70
+}
+
+primary-4 {
+    color: #3C3C3C
+}
+
+primary-5 {
+    color: #ffffff
+}
+
+* {
+    box-sizing: border-box;
+    object-fit: cover;
+
+
+
+}
+
+#inicio {
+    background-image: url("../images/fondo.jpg");
+
+}
+#tit{
+    display: none;
+}
+
+body {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.9)), url("../images/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 1);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0;
+
+    grid-template-columns: 2fr 1fr 4fr 0.5fr;
+    grid-template-areas:
+        'header'
+        'aside'
+        'nav'
+        'main'
+        'footer';
+}
+
+img {
+    object-fit: contain;
+    margin: 10px;
+
+
+}
+
+button {
+align-items: center;
+    border-radius: 15px;
+    background: #743DB2;
+
+}
+
+#anadir {
+    bottom: 0;
+    justify-content: right;
+    align-items: right;
+}
+
+#pagar {
+    width: 60%;
+    font-family: Roboto;
+    height: 15px;
+}
+
+#pagar a {
+    font-style: normal;
+}
+
+#activos {
+    color: #36BB70;
+    border: #3C3C3C;
+
+}
+
+
+#rechazados,
+#pasados {
+    color: #FF6F49;
+    border: #3C3C3C;
+
+}
+
+#solicitudes {
+    color: #FFF249;
+    border: #3C3C3C;
+
+}
+
+form input {
+    width: 214px;
+    height: 40px;
+    border-radius: 15px;
+    background: #743DB2;
+    color: #ffffff;
+    margin: 2%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10%;
+    color: #ffffff;
+}
+
+#pago {
+    margin-top: 100px;
+    margin: 0;
+    width: 100%;
+    background-color: #ffffff;
+    color: #3C3C3C;
+    text-align: left;
+    padding: 30px;
+
+
+}
+
+.negro {
+    color: #3C3C3C;
+}
+
+.morado {
+    color: #743DB2;
+    font-family: Roboto;
+}
+
+
+#pago input {
+    background-color: rgb(213, 192, 244);
+    width: 90%;
+
+}
+
+header {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+header div:nth-of-type(1) {
+    width: calc(43% - 34px);
+
+
+}
+
+.pago {
+
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.cuadrado {
+    display: flex;
+    background-color: #743DB2;
+    height: 50px;
+    width: 80px;
+    border-radius: 15px;
+    margin: auto;
+    margin-bottom: 30px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.cuadrado img {
+    z-index: 1;
+    width: 40px;
+}
+
+.cuadrado:hover {
+    background-color: #3C3C3C;
+}
+.boton{
+text-align: center;}
+
+.nav{
+    display: none;
+}
+nav {
+    grid-area: nav;
+    width: 100%;
+    height: 25px;
+    background-color: #743DB2;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+nav a{
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; 
+  
+}
+
+
+
+main {
+    height: 100%;
+    grid-area: main;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    align-items: center;
+
+}
+main section{
+    width: 100%;
+}
+
+footer {
+    grid-area: footer;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    bottom: 0;
+  
+}
+
+aside {
+    grid-area: aside;
+    display: flex;
+    justify-content: center;
+}
+
+article {
+    background-color: #743DB2;
+    opacity: 0.7;
+    width: 80%;
+    height: 180px;
+    border-radius: 15px;
+    margin: auto;
+
+}

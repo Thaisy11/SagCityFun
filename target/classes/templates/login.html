@@ -20,7 +20,7 @@
       </a>
   </div>
     <div>
-      <img src="@{/images/logo.png}" alt="logo">
+      <img th:src="@{/images/logo.png}" alt="logo">
     </div>
     <section id="tit">
       <h1>VIVE EL OCIO NOCTURNO</h1>
@@ -29,7 +29,7 @@
   </header>
   <nav>
 
-    <a th:href="@{home}">PÁGINA PRINCIPAL</a>
+    <a th:href="@{/}">PÁGINA PRINCIPAL</a>
     <a th:href="@{eventos}">EVENTOS</a>
     <a th:href="@{login}">LOGIN</a>
     <a th:href="@{registro}">REGISTRO</a>
@@ -43,7 +43,7 @@
       <label>Email: </label><br>
       <input type="text" id="log_mail" placeholder="Email"  name="email"><br>
       <label>Password: </label><br>
-      <input type="text" id="log_pass"  placeholder="Email" name="pasword"><br>
+      <input type="text" id="log_pass"  placeholder="Contraseña" name="pasword"><br>
 
 
       <button type="submit" id="btnlog" name="Ingresar">Login</button>
@@ -56,7 +56,7 @@
 
   </a>
     <script th:src="@{/javaScript/base.js}"></script>
-    <script src="@{/JavaScript/login.js}"></script>
+    <script th:src="@{/JavaScript/login.js}"></script>
   </main>
   <footer>
     <div>

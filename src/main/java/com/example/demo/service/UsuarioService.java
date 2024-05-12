@@ -12,7 +12,7 @@ import com.example.demo.Repository.entity.UsuarioEntity;
 
 import jakarta.transaction.Transactional;
 @Service
-public class UsuarioService implements BaseService<UsuarioEntity> {
+public class UsuarioService implements Base3Service<UsuarioEntity> {
 
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -25,6 +25,14 @@ public class UsuarioService implements BaseService<UsuarioEntity> {
 
 
     }
+    @Override
+    @Transactional
+    public Optional<UsuarioEntity> findByEmail(UsuarioEntity entity) {
+
+        return usuarioRepository.findByEmail(entity.getEmail());
+
+
+        }
 
     @Override
     @Transactional

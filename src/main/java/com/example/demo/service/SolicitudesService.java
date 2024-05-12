@@ -9,7 +9,9 @@ import com.example.demo.Repository.dao.SolicitudesRepository;
 import com.example.demo.Repository.entity.SolicitudesEntity;
 
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SolicitudesService implements Base2Service<SolicitudesEntity> {
 
     @Autowired

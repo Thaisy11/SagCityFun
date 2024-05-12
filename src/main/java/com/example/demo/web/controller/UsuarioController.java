@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,8 +22,8 @@ import com.example.demo.Repository.dao.UsuarioRepository;
 import com.example.demo.Repository.entity.UsuarioEntity;
 
 @RestController
-@RequestMapping("/usuarios")
-public class UsuarioController {
+@RequestMapping("/u")
+public class UsuarioController{
 
  private static final Logger log = LoggerFactory.getLogger(UsuarioController.class);
 
@@ -59,7 +60,7 @@ public class UsuarioController {
         usuarioService.save(usuario);
         return ResponseEntity.ok(usuario);
     }
-  @PostMapping(path = "/registro")
+  @PutMapping(path = "/registro")
     public ResponseEntity<UsuarioEntity> registro(@RequestBody UsuarioEntity usuario){
         if (usuario == null){
             return ResponseEntity.badRequest().build();
@@ -68,17 +69,30 @@ public class UsuarioController {
         return ResponseEntity.ok(usuario);
     }
 
-    @PutMapping(path = "/")
-    public ResponseEntity<UsuarioEntity> actualizarHorario(@RequestBody UsuarioEntity usuario){
-        if (usuario.getId() == null || !usuarioRepository.existsById(usuario.getId())){
-            return ResponseEntity.badRequest().build();
+        @PostMapping(path = "/iniciarSesion")
+        public ResponseEntity<?> iniciarSesion(@RequestBody UsuarioEntity usuario) {
+            log.info("Recibido Usuario");
+
+            if (usuario == null || usuario.getContrasena() == null) {
+                return ResponseEntity.badRequest().build();
+            }
+
+            Optional<UsuarioEntity> usuarioOptional = usuarioService.findByEmail(usuario);
+            if (usuarioOptional.isPresent()) {
+                UsuarioEntity usuarioEncontrado = usuarioOptional.get();
+                if (usuarioEncontrado.getContrasena().equals(usuario.getContrasena())) {
+                    return ResponseEntity.ok(usuarioEncontrado);
+                } else {
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+                }
+            } else {
+                return ResponseEntity.notFound().build();
+            }
         }
-        usuarioRepository.save(usuario);
-        return ResponseEntity.ok(usuario);
     }
 
 
-    }
+
 
 
 

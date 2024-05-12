@@ -24,11 +24,18 @@ btnlog.addEventListener('click', function (e) {
             break;
         default:
 
-            param = new FormData();
-            param.append('opcion', 'SR');
-            param.append('email', log_mail.value);
-            param.append('password', log_pass.value);
-            realizarPeticiones(param);
+
+
+            const usuario = {
+                "email": log_mail.value,
+                "contrasena": log_pass.value,
+
+            };
+
+
+
+
+            realizarPeticiones(usuario);
             break;
     }
 });
@@ -52,48 +59,46 @@ function validaEmail(campo) {
     return true;
 
 }
-//PETICION HTTPREQUEST
-function realizarPeticiones(param) {
-    let url = 'http://localhost:8888/SaguntoCityFun/login';
-    let peticion = new XMLHttpRequest();
-    peticion.open('POST', url);
-    console.log(url);
 
-    peticion.addEventListener('readystatechange', function () {
-        if (peticion.status === 200 && peticion.readyState === 4) {
-            document.querySelector('main').innerHTML = '';
-
-            console.log(peticion.responseText);
-            if (peticion.responseText.trim() === "error") {
-                alert("Usuario no registrado");
-                window.location="registro.html";
-
-            } else {
-
-                console.log(peticion.responseText);
-                let datosJSON = JSON.parse(peticion.responseText);
-                console.log("sí que hace la petición");
-                let nombreUsuario = datosJSON[0].nombre;
-                let idUsuario = datosJSON[0].id;
-                let rolUsuario = datosJSON[0].rol;
-                sessionStorage.setItem("nombre", nombreUsuario);
-                sessionStorage.setItem("id", idUsuario);
-                sessionStorage.setItem("rol", rolUsuario);
-
-
-                if(rolUsuario === "A"){
-                    window.location="admin_activos.html";
-
-
-                } else if (rolUsuario === "U") {
-                    window.location="eventos.html";
-
-                }
-            }
-        }
-
+function realizarPeticiones(usuario) {
+    console.log(usuario);
+    let url = '/SaguntoCityFun/u/iniciarSesion';
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(usuario)
     })
-    peticion.send(param)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error en el login del usuario. Estado: ${response.status}`);
+            }
+
+            return response.json();
+        })
+        .then(usuarioOK => {
+            console.log('Usuario:', usuarioOK);
+
+
+            sessionStorage.setItem("email", usuarioOK.email);
+            sessionStorage.setItem("contraUsuario", usuarioOK.contrasena);
+            sessionStorage.setItem("rol", usuarioOK.rol);
+            sessionStorage.setItem("nombre", usuarioOK.nombre);
+            sessionStorage.setItem("id",usuarioOK.id);
+
+            if (usuarioOK.rol === "A") {
+                window.location.href = "/SaguntoCityFun/admin_activos";
+            } else if (usuarioOK.rol === "U") {
+                window.location.href = "/eventos";
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Error en el inicio de sesión. Por favor, inténtelo de nuevo.");
+        });
 }
+
+
 
 

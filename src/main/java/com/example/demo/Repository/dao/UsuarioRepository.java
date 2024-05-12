@@ -16,5 +16,5 @@ import jakarta.transaction.Transactional;
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long>{
 
 
-    
+    Optional<UsuarioEntity> findByEmail(String email);
 }

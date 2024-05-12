@@ -60,7 +60,7 @@ public class UsuarioController{
         usuarioService.save(usuario);
         return ResponseEntity.ok(usuario);
     }
-  @PutMapping(path = "/registro")
+  @PostMapping(path = "/registrar")
     public ResponseEntity<UsuarioEntity> registro(@RequestBody UsuarioEntity usuario){
         if (usuario == null){
             return ResponseEntity.badRequest().build();

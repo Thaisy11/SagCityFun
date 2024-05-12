@@ -48,13 +48,14 @@
 
       <button type="submit" id="btnlog" name="Ingresar">Login</button>
     </form>
-    <div id="avisos"></div>
-  <p>¿No tienes cuenta? Registrate <a th:href="@{registro}">aquí</a></p>
- 
+    <div class="avisos"></div>
+
   <a th:href="@{eventos}">
     <button>ENTRAR COMO INVITADO</button>
 
   </a>
+    <p>¿No tienes cuenta? Registrate <a th:href="@{registro}">aquí</a></p>
+
     <script th:src="@{/javaScript/base.js}"></script>
     <script th:src="@{/JavaScript/login.js}"></script>
   </main>

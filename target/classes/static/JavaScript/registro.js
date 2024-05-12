@@ -1,4 +1,3 @@
-
 //registro
 let btnreg = document.getElementById("btnreg");
 
@@ -8,81 +7,78 @@ let pass = document.getElementById('pass');
 let repass = document.getElementById('repass');
 
 
-var contenido = document.getElementById("avisos");
+let contenido = document.querySelector(".avisos");
 var correcto;
 
-
-
-
+let elementos = [nom, mail, pass, repass];
 btnreg.addEventListener('click', function (e) {
     e.preventDefault();
+
+
     switch (true) {
-        case !(correcto = campos_llenos(nom)):
-            nom.focus();
-            break;
+
         case !(correcto = validaNombre(nom)):
             nom.focus();
             break;
-        case !(correcto = campos_llenos(mail)):
-            mail.focus();
-            break;
+        /* case !(correcto = campos_llenos(mail)):
+             mail.focus();
+             break;          */
         case !(correcto = validaEmail(mail)):
             mail.focus();
             break;
-        case !(correcto = campos_llenos(pass)):
+        /* case !(correcto = campos_llenos(pass)):
+             pass.focus();
+             break;     */
+        case !(correcto = validaPass(pass)):
             pass.focus();
             break;
-        case !(correcto = validaContra(pass)):
-            pass.focus();
-            break;
-        case !(correcto = campos_llenos(repass)):
+        /*case !(correcto = campos_llenos(repass)):
             repass.focus();
-            break;
-        case !(correcto = campos_llenos(repass)):
-            pass.focus();
-            break;
+            break;  */
         case !(correcto = passCoincida(pass, repass)):
             pass.focus();
             break;
+
+        case !(correcto = validarCampos(elementos)):
+            
+            break;
+
+
         default:
 
+            const registro = {
+                "nombre": nom.value,
+                "contrasena": pass.value,
+                'email': mail.value,
+                'rol': "U",
 
-            param = new FormData();
-            param.append('opcion', 'RS');
-            param.append('nombre', nom.value);
-            param.append('email', mail.value);
-            param.append('password', pass.value);
+            };
 
-
-            realizarPeticiones(param);
-
+            realizarPeticiones(registro);
             break;
+
+
     }
 });
 
 
-
-function validaContra(campo) {
-    regexp_password = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{5,10}$)/;
-    if (!regexp_password.test(campo.value)){
+function validaNombre(nom) {
+    var nomexpreg = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]{5,20}$/;
+    if (!nomexpreg.test(nom.value)) {
         contenido.innerHTML = "";
-        contenido.innerHTML += "El campo " + campo.name + " debe tener entre 5 y 10 carácteres. 1 mayuíscula, minúscula y un número";
+        contenido.innerHTML += "El nombre debe tener entre 2 y 20 carácteres";
 
         return false;
     }
     return true;
 }
 
-
-
-
-function validaNombre(campo) {
-    var nomexpreg = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]{5,20}$/;
-    if (!nomexpreg.test(campo.value)){
-        contenido.innerHTML = "";
-        contenido.innerHTML += "El campo " + campo.name + " debe tener entre 2 y 20 carácteres";
-
-        return false;
+function validarCampos(elementos) {
+    for (let campo of elementos) {
+        if (!campos_llenos(campo)) {
+            campo.focus();
+            return false;
+        }
     }
     return true;
 }
@@ -92,7 +88,7 @@ function campos_llenos(campo) {
     if (campo.value.trim() === "") {
         contenido.innerHTML = "";
 
-        contenido.innerHTML += "El campo " + campo.name + " no puede estar vacío";
+        contenido.innerHTML += "El " + campo.name + " no puede estar vacío";
 
         return false;
     }
@@ -100,51 +96,75 @@ function campos_llenos(campo) {
     return true;
 }
 
-function validaEmail(campo) {
+function validaEmail(mail) {
     var expRegEmail = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-    if (!expRegEmail.test(campo.value)) {
+    if (!expRegEmail.test(mail.value)) {
         contenido.innerHTML = "";
-        contenido.innerHTML = "Debe introducir un email válido<br>";
+        contenido.innerHTML = "Debe introducir un email válido";
         return false;
     }
     return true;
 
 }
+
 function passCoincida(pass, repass) {
     if (pass.value !== repass.value) {
+        contenido.innerHTML = ""; // Limpiar contenido del div avisos
+
         contenido.innerHTML = "Las contraseñas deben coincidir";
         return false;
     } else {
         return true;
     }
+
+
 }
 
 
+function validaPass(pass) {
+    var expRegEmail = /^(?=.*[0-9])[a-zA-Z0-9]{6,}$/;
+    if (!expRegEmail.test(pass.value)) {
+        contenido.innerHTML = "";
+        contenido.innerHTML = "Debe introducir una contraseña válida.<br>";
+                contenido.innerHTML += "Mínimo 6 carácteres con al menos un número";
 
-function realizarPeticiones(param) {
-    let url = 'http://localhost:8888/SaguntoCityFun/usuarios/registro';
-    let peticion = new XMLHttpRequest();
-    peticion.open('POST', url);
+        return false;
+    }
+    return true;
+}
 
-    peticion.addEventListener('readystatechange', function () {
-        if (peticion.status === 200 && peticion.readyState === 4) {
 
-            console.log(peticion.responseText);
-            if (peticion.responseText.trim() === "ok") {
-                alert("Socio registrado correctamente");
-
-                window.location = "login.html";
-
-            } else {
-                console.log(peticion.responseText);
-                alert("No se ha registrado");
-                preventDefault();
-
-            }
-        }
-
+function realizarPeticiones(registro) {
+    contenido.innerHTML = ""; // Limpiar contenido del div avisos
+    console.log(registro);
+    let url = '/SaguntoCityFun/u/registrar';
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(registro)
     })
-    peticion.send(param);
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error en el registro del usuario. Estado: ${response.status}`);
+            }
+
+            return response.json();
+        })
+        .then(RegUsuario => {
+            console.log('Usuario:', RegUsuario);
+
+            window.location.href = "/SaguntoCityFun/login";
+
+
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Error en el Registro. Por favor, inténtelo de nuevo.");
+        });
+
+
 }
 
 

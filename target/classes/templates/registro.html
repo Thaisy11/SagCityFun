@@ -16,7 +16,7 @@
   <header>
     <div>
       <a th:href="@{home}">
-          <img src="@{/images/flecha.png}" alt="icono_volver">
+          <img th:src="@{/images/flecha.png}" alt="icono_volver">
       </a>
   </div>
     <div>
@@ -39,34 +39,34 @@
     <section>
       <h2>REGISTRO</h2>
     </section>
-    <form action="regform" method="post">
+    <form id="regform" action="post">
 
       <input type="text"  id="nom" placeholder="NOMBRE" name="nombre">
-      <input type="text" id="email" placeholder="EMAIL" name="email">
-      <input type="password" id="pass"placeholder="CONTRASEÑA" name="psw">
+      <input type="text" id="mail" placeholder="EMAIL" name="email">
+      <input type="password" id="pass" placeholder="CONTRASEÑA" name="psw">
       <input type="password" id="repass" placeholder="REPITE CONTRASEÑA" name="psw2">
  
-      <a th:href="@{login.html}">
-        <button type="submit" id="btnreg"><h2>REGISTRAME</h2></button>
+
+        <button type="submit" id="btnreg">REGISTRAME</button>
     
-      </a>
+
   </form>
-  <p>¿No tienes cuenta? Registrate <a>aquí</a></p>
+    <div class="avisos"></div>
   
   <a th:href="@{eventos.html}">
-    <button><h2>ENTRAR COMO INVITADO</h2></button>
+    <button>ENTRAR COMO INVITADO</button>
 
   </a>
-    <script src="@{/javaScript/base.js}"></script>
-    <script src="@{/JavaScript/registro.js}"></script>
+    <script th:src="@{/javaScript/base.js}"></script>
+    <script th:src="@{/JavaScript/registro.js}"></script>
   </main>
   <footer>
     <div>
-      <img src="@{/images/CopyR.png}" alt="copyR">
+      <img th:src="@{/images/CopyR.png}" alt="copyR">
     </div>
     <div><p>SaguntoCityFun de CityFun S.L.</p></div>
     <div>
-      <img src="@{/images/insta.png}" alt="insta">
+      <img th:src="@{/images/insta.png}" alt="insta">
     </div>
   </footer>
 

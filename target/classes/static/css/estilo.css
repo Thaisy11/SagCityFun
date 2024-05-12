@@ -13,7 +13,6 @@ h3 {
 h4,
 h5,
 h6,
-p,
 a {
     color: white;
     font-family: Comfortaa;
@@ -26,11 +25,11 @@ h1 {
     letter-spacing: 11px;
 
 }
-#avisos {
+.avisos {
     margin-top: 40px;
     height: 100px;
     width: 100%;
-    color: rgb(83, 23, 23);
+    color: black;
 }
 
 h2 {
@@ -119,6 +118,12 @@ button {
 align-items: center;
     border-radius: 15px;
     background: #743DB2;
+    font-family: Wallpoet;
+    font-size: 22px;
+    color: white;
+    height: 50px;
+    text-align: center;
+
 
 }
 

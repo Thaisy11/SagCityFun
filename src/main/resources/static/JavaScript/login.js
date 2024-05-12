@@ -5,7 +5,10 @@ let log_mail = document.getElementById("log_mail");
 let log_pass = document.getElementById("log_pass");
 
 //ZONA DE AVISO DE ERROR
-let contenido = document.getElementById("avisos");
+let contenido = document.querySelector(".avisos");
+
+// O si prefieres usar el ID en lugar de la clase
+// let contenido = document.getElementById("avisos");
 let correcto;
 
 //EVENTO SOBRE EL BOTON DEL LOGIN. VALIDACION Y CREACION FORMDATA
@@ -53,7 +56,7 @@ function validaEmail(campo) {
     let expRegEmail = /[\w-.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
     if (!expRegEmail.test(campo.value)) {
         contenido.innerHTML = "";
-        contenido.innerHTML = "Debe introducir un email válido<br>";
+        contenido.innerHTML = "Debe introducir un email válido";
         return false;
     }
     return true;

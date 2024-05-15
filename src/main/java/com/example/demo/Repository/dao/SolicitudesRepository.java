@@ -16,18 +16,17 @@ import jakarta.transaction.Transactional;
 @Repository
 @Transactional
 public interface SolicitudesRepository extends JpaRepository<SolicitudesEntity, Long>{
-
     @Query("SELECT s FROM SolicitudesEntity s WHERE s.idestado = 1")
+    public List<SolicitudesEntity> pendiente();
+
+    @Query("SELECT s FROM SolicitudesEntity s WHERE s.idestado =2 ")
     public List<SolicitudesEntity> activo();
 
 
-    @Query("SELECT s FROM SolicitudesEntity s JOIN EstadoEntity e ON s.idestado = e.id WHERE e.estado = 'RECHAZADO'")
+    @Query("SELECT s FROM SolicitudesEntity s  WHERE s.idestado = 3")
     public List<SolicitudesEntity> rechazado();
 
-    @Query("SELECT s FROM SolicitudesEntity s JOIN EstadoEntity e ON s.idestado = e.id WHERE e.estado = 'PENDIENTE'")
-    public List<SolicitudesEntity> pendiente();
-
-    @Query("SELECT s FROM SolicitudesEntity s JOIN EstadoEntity e ON s.idestado = e.id WHERE e.estado = 'PASADO'")
+    @Query("SELECT s FROM SolicitudesEntity s WHERE s.idestado = 4")
     public List<SolicitudesEntity> pasado();
 
 

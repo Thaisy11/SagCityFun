@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Date;
+
 @Getter
 @Setter
 @Entity
@@ -51,14 +53,15 @@ public class SolicitudesEntity {
 
    
     private Long id;
-    private String nombre_evento;
+    private String nombreevento;
     private String local;
-    private String dia;
+    private Date dia;
     private String hora;
     private String precio;
     private String link;
-    private Long idpago;
     private Long idestado;
+    private Long idusuario;
+
 
 
 

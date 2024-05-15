@@ -68,7 +68,10 @@ public class UsuarioController{
         usuarioService.save(usuario);
         return ResponseEntity.ok(usuario);
     }
-
+    @GetMapping("/eventos")
+    public String eventos() {
+        return "eventos";
+    }
         @PostMapping(path = "/iniciarSesion")
         public ResponseEntity<?> iniciarSesion(@RequestBody UsuarioEntity usuario) {
             log.info("Recibido Usuario");

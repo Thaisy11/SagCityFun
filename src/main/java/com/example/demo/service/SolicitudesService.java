@@ -63,8 +63,8 @@ public class SolicitudesService implements Base2Service<SolicitudesEntity> {
 
     @Override
     public List<SolicitudesEntity> findActivos() {
-        List<SolicitudesEntity> solicitudes = solicitudesRepository.activo();
-        return solicitudes;
+        List<SolicitudesEntity> solicitudes_activas = solicitudesRepository.activo();
+        return solicitudes_activas;
     }
 
     @Override

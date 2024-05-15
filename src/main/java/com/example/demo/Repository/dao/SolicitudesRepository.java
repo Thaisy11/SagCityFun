@@ -17,8 +17,9 @@ import jakarta.transaction.Transactional;
 @Transactional
 public interface SolicitudesRepository extends JpaRepository<SolicitudesEntity, Long>{
 
-    @Query("SELECT s FROM SolicitudesEntity s JOIN EstadoEntity e ON s.idestado = e.id WHERE e.estado = 'ACTIVO'")
+    @Query("SELECT s FROM SolicitudesEntity s WHERE s.idestado = 1")
     public List<SolicitudesEntity> activo();
+
 
     @Query("SELECT s FROM SolicitudesEntity s JOIN EstadoEntity e ON s.idestado = e.id WHERE e.estado = 'RECHAZADO'")
     public List<SolicitudesEntity> rechazado();

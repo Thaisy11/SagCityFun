@@ -32,7 +32,6 @@ public class SolicitudesService implements Base2Service<SolicitudesEntity> {
 
     @Override
     @Transactional
-
     public SolicitudesEntity save(SolicitudesEntity solicitud) {
         solicitud = solicitudesRepository.save(solicitud);
         return solicitud;

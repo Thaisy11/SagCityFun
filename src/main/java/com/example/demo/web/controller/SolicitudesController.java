@@ -7,10 +7,8 @@ import com.example.demo.Repository.entity.UsuarioEntity;
 import com.example.demo.service.SolicitudesService;
 import com.example.demo.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,6 +44,14 @@ public class SolicitudesController {
     public List<SolicitudesEntity> rechazadas() {
         List<SolicitudesEntity> sol_rechazadas = solicitudesService.findRechazados();
         return sol_rechazadas;
+    }
+
+    @PostMapping(path = "/nueva", consumes = "application/json")
+    public ResponseEntity<SolicitudesEntity> solicitud (@RequestBody SolicitudesEntity nueva){
+
+
+        solicitudesService.save(nueva);
+        return ResponseEntity.ok(nueva);
     }
 
 

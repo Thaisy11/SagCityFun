@@ -93,7 +93,7 @@ function realizarPeticiones(usuario) {
             if (usuarioOK.rol === "A") {
                 window.location.href = "/SaguntoCityFun/admin_activos";
             } else if (usuarioOK.rol === "U") {
-                window.location.href = "/SaguntoCityFun/u/eventos";
+                window.location.href = "/SaguntoCityFun/eventos";
             }
         })
         .catch(error => {

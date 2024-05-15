@@ -36,7 +36,7 @@ public class PagoController implements BaseService<PagoEntity> {
     @Autowired
     private PagoRepository pagoRepository;
     
-    @GetMapping("/todos")
+    @GetMapping("/pago")
     public List<PagoEntity> findAll(){
         return pagoService.findAll();
     }

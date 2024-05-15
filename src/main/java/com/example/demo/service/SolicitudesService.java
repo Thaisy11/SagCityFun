@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,6 +83,27 @@ public class SolicitudesService implements Base2Service<SolicitudesEntity> {
     public List<SolicitudesEntity> findPendientes() {
         List<SolicitudesEntity> solicitudes = solicitudesRepository.pendiente();
         return solicitudes;
+    }
+
+    @Override
+    public int contarSolicitudesPrecioPosicionamiento1() {
+        return solicitudesRepository.contarSolicitudesPrecioPosicionamiento1();
+    }
+    @Override
+    public int contarSolicitudesPrecioPosicionamiento2() {
+        return solicitudesRepository.contarSolicitudesPrecioPosicionamiento2();
+    }
+
+
+
+    @Override
+    public int contarSolicitudesPrecioPosicionamiento3() {
+        return solicitudesRepository.contarSolicitudesPrecioPosicionamiento3();
+    }
+
+    @Override
+    public int contarSolicitudesPrecioPosicionamientoPorFecha(LocalDate fecha) {
+        return solicitudesRepository.contarSolicitudesPrecioPosicionamientoPorFecha(fecha);
     }
 
 }

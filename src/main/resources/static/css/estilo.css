@@ -174,7 +174,7 @@ button {
 
 }
 
-form input {
+form input, #posicionamiento, #posicionamiento option {
     width: 214px;
     height: 40px;
     border-radius: 15px;

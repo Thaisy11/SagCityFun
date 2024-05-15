@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -53,9 +56,29 @@ public class SolicitudesController {
         solicitudesService.save(nueva);
         return ResponseEntity.ok(nueva);
     }
+    @GetMapping("/posicionamiento")
+    public ResponseEntity<?> contarSolicitudesPorPosicionamiento() {
+        int conteo1 = solicitudesService.contarSolicitudesPrecioPosicionamiento1();
+        int conteo2 = solicitudesService.contarSolicitudesPrecioPosicionamiento2();
+        int conteo3 = solicitudesService.contarSolicitudesPrecioPosicionamiento3();
 
+        // Puedes estructurar los conteos en un objeto JSON
+        Map<String, Integer> conteos = new HashMap<>();
+        conteos.put("conteo1", conteo1);
+        conteos.put("conteo2", conteo2);
+        conteos.put("conteo3", conteo3);
 
+        return ResponseEntity.ok(conteos);
     }
+    @GetMapping("/posicionamiento/{fecha}")
+    public int contarSolicitudesPrecioPosicionamientoPorFecha(@PathVariable String fecha) {
+        return solicitudesService.contarSolicitudesPrecioPosicionamientoPorFecha(LocalDate.parse(fecha));
+    }
+
+
+
+
+}
 
 
 

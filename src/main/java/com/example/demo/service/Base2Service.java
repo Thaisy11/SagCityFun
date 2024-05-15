@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface Base2Service <SolicitudesEntity> {
@@ -18,8 +19,11 @@ public interface Base2Service <SolicitudesEntity> {
     public List<SolicitudesEntity> findRechazados();
     public List<SolicitudesEntity> findPasados();
     public List<SolicitudesEntity> findPendientes();
+    public int contarSolicitudesPrecioPosicionamiento3();
+   public int contarSolicitudesPrecioPosicionamiento1();
+   public int  contarSolicitudesPrecioPosicionamiento2();
 
 
 
-    
+    public int contarSolicitudesPrecioPosicionamientoPorFecha(LocalDate fecha);
 }

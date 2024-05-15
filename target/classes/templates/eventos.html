@@ -26,6 +26,8 @@
       <h1>VIVE EL OCIO NOCTURNO</h1>
 
     </section>
+
+
   </header>
   <nav>
 
@@ -37,6 +39,8 @@
 
 
   <main>
+    <div id="nombreUsuario"></div>
+
     <section>
       <h2>PRÓXIMOS EVENTOS</h2>
     </section>
@@ -46,18 +50,11 @@
       <h4>fecha</h4>
       <img th:src="@{/images/flechadxa_mo.png.png}" alt="flecha_izq">
     </aside>
-    <article>evento</article>
-    
-    <a th:href="@{eventos}">
-      <button id="anadir"><h2>AÑADIR EVENTO</h2></button>
-  
-    </a>
-<div>
-  <a th:href="@{eventos}">
-      <img src="@{/images/flech_abajo.png}" alt="fle">  
-    </a>
-</div>
-   
+
+
+
+    <script th:src="@{/javaScript/base.js}"></script>
+    <script th:src="@{/JavaScript/solicitudes.js}"></script>
   </main>
   <footer>
     <div>

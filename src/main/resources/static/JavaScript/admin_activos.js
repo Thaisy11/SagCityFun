@@ -1,59 +1,37 @@
-document.addEventListener('DOMContentLoaded', cargarPAG);
-
 // VARIABLES PARA LA PAGINACIÓN
 let paginaActual = 1;
 const articulosPorPagina = 4;
-let fechaSeleccionada = new Date();
-
 
 // CUANDO SE CARGA EL DOM
+document.addEventListener('DOMContentLoaded', cargarPAG);
+
+// SE CARGA LA PAGINA, carga eventos
 function cargarPAG() {
     muestraUsuario();
     funcionFecha();
     cargarSolicitudes();
-    const flechaIzquierda = document.querySelector('aside img:first-of-type');
-    const flechaDerecha = document.querySelector('aside img:last-of-type');
-    flechaIzquierda.addEventListener('click', retrocederDia);
-    flechaDerecha.addEventListener('click', avanzarDia);
-
-
+    console.log("después de cargar solicitudes");
 }
 
 // CARGAR ARTÍCULOS DE LA TIENDA
-async function cargarSolicitudes() {
-   await realizarPeticionesActivas();
-
+function cargarSolicitudes() {
+    realizarPeticionesActivas();
 }
+function obtenerFechaFormateada() {
+    let fechaActual = new Date();
 
-function obtenerFechaFormateada(fecha) {
-    let dia = fecha.getDate();
-    let mes = fecha.getMonth() + 1;
-    let año = fecha.getFullYear();
+    let dia = fechaActual.getDate();
+    let mes = fechaActual.getMonth() + 1;
+    let año = fechaActual.getFullYear();
 
     dia = (dia < 10) ? '0' + dia : dia;
     mes = (mes < 10) ? '0' + mes : mes;
 
     return dia + '/' + mes + '/' + año;
 }
-
 function funcionFecha() {
     let h4Fecha = document.querySelector('aside h4');
-    h4Fecha.textContent = obtenerFechaFormateada(fechaSeleccionada);
-}
-
-function retrocederDia() {
-    const fechaActual = new Date();
-    if (fechaSeleccionada > fechaActual) {
-        fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
-        funcionFecha();
-        cargarSolicitudes();
-    }
-}
-
-function avanzarDia() {
-    fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1);
-    funcionFecha();
-    cargarSolicitudes();
+    h4Fecha.textContent =  obtenerFechaFormateada();
 }
 
 function realizarPeticionesActivas() {
@@ -65,6 +43,7 @@ function realizarPeticionesActivas() {
         headers: {
             'Content-Type': 'application/json'
         },
+
     })
         .then(response => {
             if (!response.ok) {
@@ -75,44 +54,39 @@ function realizarPeticionesActivas() {
         })
         .then(datosJSON => {
             mostrarEventos(datosJSON);
+
         })
         .catch(error => {
             console.error(error);
             alert("Error en la carga de eventos. Por favor, inténtelo de nuevo.");
         });
 }
+
+
 function mostrarEventos(datosJSON) {
     console.log(datosJSON);
     const inicio = (paginaActual - 1) * articulosPorPagina;
     const fin = inicio + articulosPorPagina;
 
-    const fechaSeleccionadaString = fechaSeleccionada.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    // Obtener la fecha actual
+    const fechaActual = new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
+    // Filtrar eventos por fecha
     const eventosDeHoy = datosJSON.filter(evento => {
+        // Convertir la fecha del evento a un formato comparable
         const fechaEvento = new Date(evento.dia).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        return fechaEvento === fechaSeleccionadaString;
+        // Filtrar eventos que coincidan con la fecha actual
+        return fechaEvento === fechaActual;
     });
-
-    const main = document.querySelector('main');
-    const articlesAnteriores = main.querySelectorAll('article');
-    const botonAnterior = document.getElementById('anadir');
-
-    // Eliminar artículos anteriores
-    articlesAnteriores.forEach(article => {
-        main.removeChild(article);
-    });
-
-    // Eliminar botón anterior si existe
-    if (botonAnterior) {
-        main.removeChild(botonAnterior);
-    }
 
     if (eventosDeHoy.length === 0) {
-        let divSinEventos = crearElemento('article', main);
+        // Si no hay eventos para la fecha actual, mostrar un mensaje
+        let divSinEventos = crearElemento('article', document.querySelector('main'));
         crearElementoTexto("No hay eventos en esta fecha", 'h2', divSinEventos);
     } else {
+        // Mostrar los eventos filtrados
         for (let i = inicio; i < fin && i < eventosDeHoy.length; i++) {
-            let divEvento = crearElemento('article', main);
+            let divEvento = crearElemento('article', document.querySelector('main'));
             crearElementoTexto(eventosDeHoy[i].nombreevento, 'h2', divEvento);
             crearElementoTextoAdicional(eventosDeHoy[i].local, "Local del evento: ", 'h4', divEvento);
             crearElementoTextoAdicional(eventosDeHoy[i].hora, "Hora del evento: ", 'p', divEvento);
@@ -120,26 +94,8 @@ function mostrarEventos(datosJSON) {
             crearElementoTexto(eventosDeHoy[i].link, 'p', divEvento);
         }
     }
-
-    mostrarBotonAgregarEvento(); // Llamada aquí
 }
 
-function mostrarBotonAgregarEvento() {
-    const usuarioID = sessionStorage.getItem("id");
-    const main = document.querySelector('main');
-    const botonAgregarEvento = document.createElement('button');
-    botonAgregarEvento.textContent = 'AÑADIR EVENTO';
-    botonAgregarEvento.id = 'anadir';
-
-    // Comprobar si el usuario está registrado
-    if (usuarioID) {
-        botonAgregarEvento.addEventListener('click', function () {
-            window.location.href = '/SaguntoCityFun/nuevoEvento'; // Redireccionar a la página crearEvento
-        });
-        main.appendChild(botonAgregarEvento);
-
-    }
-}
 
 function mostrarBotonSiguiente() {
     let botonSiguiente = crearElementoTexto('Página siguiente', 'button', document.querySelector('main'));

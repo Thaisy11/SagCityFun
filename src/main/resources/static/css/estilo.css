@@ -25,7 +25,10 @@ h1 {
     letter-spacing: 11px;
 
 }
-
+article h2, h5, p{
+    color: white;
+    margin: 10px;
+}
 .avisos {
     margin-top: 40px;
     height: 100px;

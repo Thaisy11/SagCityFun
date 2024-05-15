@@ -25,6 +25,10 @@ h1 {
     letter-spacing: 11px;
 
 }
+article h2, h5, p{
+    color: white;
+    margin: 10px;
+}
 .avisos {
     margin-top: 40px;
     height: 100px;
@@ -78,14 +82,22 @@ primary-5 {
     object-fit: cover;
 
 
+    #nombreUsuario {
+        color: #36BB70;
+        font-size: 15px;
+        font-family: Roboto;
+        margin-top: 15px;
 
+
+    }
 }
 
 #inicio {
     background-image: url("../images/fondo.jpg");
 
 }
-#tit{
+
+#tit {
     display: none;
 }
 
@@ -115,7 +127,7 @@ img {
 }
 
 button {
-align-items: center;
+    align-items: center;
     border-radius: 15px;
     background: #743DB2;
     font-family: Wallpoet;
@@ -248,12 +260,15 @@ header div:nth-of-type(1) {
 .cuadrado:hover {
     background-color: #3C3C3C;
 }
-.boton{
-text-align: center;}
 
-.nav{
+.boton {
+    text-align: center;
+}
+
+.nav {
     display: none;
 }
+
 nav {
     grid-area: nav;
     width: 100%;
@@ -262,18 +277,18 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
+
 }
-nav a{
+
+nav a {
     color: #FFF;
     font-family: Roboto;
     font-size: 11px;
     font-style: normal;
     font-weight: 400;
-    line-height: 100%; 
-  
-}
+    line-height: 100%;
 
+}
 
 
 main {
@@ -286,7 +301,8 @@ main {
     align-items: center;
 
 }
-main section{
+
+main section {
     width: 100%;
 }
 
@@ -297,7 +313,7 @@ footer {
     align-items: center;
     justify-content: space-around;
     bottom: 0;
-  
+
 }
 
 aside {

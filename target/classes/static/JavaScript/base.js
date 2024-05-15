@@ -9,3 +9,11 @@ function crearElementoTexto(texto, tipo, padre) {
     padre.appendChild(elemento);
     return elemento;
 }
+
+function crearElementoTextoAdicional(texto, textoAdicional, tipo, padre) {
+    let elemento = document.createElement(tipo);
+    elemento.textContent = textoAdicional + texto;
+    padre.appendChild(elemento);
+    return elemento;
+}
+

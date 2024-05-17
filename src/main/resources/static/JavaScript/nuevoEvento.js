@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", cargarPosicionamiento);
 
 let btnevento = document.getElementById("btnevento");
-let nom = document.getElementById('nombre');
+let nom = document.getElementById('nom');
 let local = document.getElementById('local');
 let fecha = document.getElementById('fecha');
 let hora = document.getElementById('hora');
@@ -13,13 +13,13 @@ let idUsuario = sessionStorage.getItem("id");
 let contenido = document.querySelector(".avisos");
 var correcto;
 
-let elementos = [nom, local, fecha, hora, precio, link];
+let elementos = [nom, local, fecha, hora, precio];
 
 btnevento.addEventListener('click', function (e) {
     e.preventDefault();
 
     switch (true) {
-        case !(correcto = validaNombre(nom.value)): // Modificado aquí
+        case !(correcto = validaNombre(nom.value)):
             nom.focus();
             break;
 
@@ -46,28 +46,83 @@ btnevento.addEventListener('click', function (e) {
 function cargarPosicionamiento() {
     posicionamiento.innerHTML = '';
 
-    // Crear opciones para el desplegable
-    let opciones = [
-        { valor: '0.0', texto: '0.0' },
-        { valor: '2.99', texto: '2.99' },
-        { valor: '6.99', texto: '6.99' },
-        { valor: '12.99', texto: '12.99' }
-    ];
+    fecha.addEventListener('change', function (e) {
+        const selectedDate = fecha.value;
+        console.log(selectedDate);
 
-    // Agregar las opciones al desplegable
-    opciones.forEach(opcion => {
-        let option = document.createElement('option');
-        option.value = opcion.valor;
-        option.textContent = opcion.texto;
-        posicionamiento.appendChild(option);
+        fetch(`/SaguntoCityFun/solicitudes/posicionamiento/${selectedDate}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error en el conteo de la solicitud. Estado: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(conteo => {
+                console.log('Número de solicitudes:', conteo);
+                cargarDatosPosicionamiento(conteo);
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Error en el conteo de solicitudes. Por favor, inténtelo de nuevo.");
+            });
     });
 }
 
-function validaNombre(nombre) { // Modificado aquí
+function cargarDatosPosicionamiento(conteo) {
+    posicionamiento.innerHTML = '';
+    console.log("conteo en cargarDatosPos: " + conteo);
+
+    // Agregar la opción por defecto "No pagar posicionamiento" con valor 0
+    let defaultOption = document.createElement('option');
+    defaultOption.value = 0;
+    defaultOption.textContent = "No pagar posicionamiento";
+    posicionamiento.appendChild(defaultOption);
+
+    // Definir los valores de precio según el conteo de solicitudes
+    let options = [];
+    if (conteo <= 3) {
+        options = [2.99];
+    } else if (conteo >= 4 && conteo <= 6) {
+        options = [2.99, 6.99];
+    } else if (conteo >= 7) {
+        options = [2.99, 6.99, 12.99];
+    } else {
+        options = ["Sin datos"];
+    }
+
+    // Agregar las opciones al select
+    options.forEach(val => {
+        let option = document.createElement('option');
+        option.value = val;
+        option.textContent = `Precio: ${val}€`;
+        posicionamiento.appendChild(option);
+    });
+
+    // Establecer un evento de cambio en el select
+    posicionamiento.addEventListener('change', function (e) {
+        let selectedOption = posicionamiento.options[posicionamiento.selectedIndex];
+        console.log("Precio seleccionado:", selectedOption.textContent);
+        const pago = crearElemento( "button", document.getElementById("posicionamiento"));
+        pago.textContent= "Ir al pago";
+        pago.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = "/SaguntoCityFun/pago";
+        });
+        posicionamiento.parentNode.insertBefore(pago, posicionamiento.nextSibling); // Inserta el botón después del select
+
+    });
+}
+
+function validaNombre(nom) {
     var nomexpreg = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]{2,50}$/;
-    if (!nomexpreg.test(nombre)) {
+    if (!nomexpreg.test(nom)) {
         contenido.innerHTML = "";
-        contenido.innerHTML += "El nombre del evento debe tener entre 2 y 50 carácteres";
+        contenido.innerHTML += "El nombre del evento debe tener entre 2 y 50 caracteres";
         return false;
     }
     return true;

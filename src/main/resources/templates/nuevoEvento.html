@@ -42,17 +42,15 @@
     </section>
     <form id="nuevoEvento"  method="post">
 
-      <input type="text" id="nombre" placeholder="NOMBRE DEL EVENTO" name="nombre del evento" >
+      <input type="text" id="nom" placeholder="NOMBRE DEL EVENTO" name="nombre del evento" >
       <input type="text" id="local" placeholder="LOCAL DEL EVENTO" name="local del evento">
       <input type="date" id="fecha" placeholder="DÍA DEL EVENTO" name="fecha del evento">
       <input type="time" id="hora" placeholder="HORA DEL EVENTO" name="hora del evento">
-      <input type="number" id="precio" placeholder="PRECIO DE LA ENTRADA" name="precio de la entrada">
+      <input type="number" id="precio" placeholder="PRECIO DE LA ENTRADA" name="precio de la entrada" min="0">
       <input type="text" id="link" placeholder="LINK A RRSS" >
+      <label for="posicionamiento">Si quieres estar entre los primeros...</label>
       <select id="posicionamiento" name="posicionamiento">
-        <option value="0">Precio Posicionamiento</option>
-        <option value="2.99">2.99</option>
-        <option value="6.99">6.99</option>
-        <option value="12.99">12.99</option>
+        <option value="0">No pagar posicionamiento</option>
       </select>
 
 

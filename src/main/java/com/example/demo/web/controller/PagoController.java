@@ -2,7 +2,7 @@ package com.example.demo.web.controller;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.service.Base3Service;
+
 import com.example.demo.service.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.service.PagoService;
 import com.example.demo.service.UsuarioService;
@@ -25,8 +26,8 @@ import com.example.demo.Repository.entity.PagoEntity;
 import com.example.demo.Repository.entity.UsuarioEntity;
 
 @RestController
-@RequestMapping("/pago")
-public class PagoController implements BaseService<PagoEntity> {
+@RequestMapping("/pagos")
+public class PagoController implements BaseService<PagoEntity>{
 
  private static final Logger log = LoggerFactory.getLogger(PagoController.class);
 
@@ -36,7 +37,7 @@ public class PagoController implements BaseService<PagoEntity> {
     @Autowired
     private PagoRepository pagoRepository;
     
-    @GetMapping("/pago")
+    @GetMapping("/todos")
     public List<PagoEntity> findAll(){
         return pagoService.findAll();
     }
@@ -56,8 +57,9 @@ public class PagoController implements BaseService<PagoEntity> {
     }
 
     @Override
-    public PagoEntity save(PagoEntity entity) {
-        return null;
+    @PostMapping("/posicionamiento")
+    public PagoEntity save(@RequestBody PagoEntity pagoEntity) {
+        return pagoService.save(pagoEntity);
     }
 
     @Override

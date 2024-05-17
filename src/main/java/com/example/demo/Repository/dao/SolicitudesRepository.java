@@ -30,18 +30,18 @@ public interface SolicitudesRepository extends JpaRepository<SolicitudesEntity, 
     @Query("SELECT s FROM SolicitudesEntity s WHERE s.idestado = 4")
     public List<SolicitudesEntity> pasado();
 
-    @Query("SELECT COUNT(s) FROM SolicitudesEntity s JOIN PagoEntity p ON s.id = p.idsolicitud " +
+    @Query("SELECT COUNT(s) FROM SolicitudesEntity s JOIN PagoEntity p ON s.idpago = p.id " +
             "WHERE p.posicionamiento > 0 AND p.posicionamiento < 4")
     public int contarSolicitudesPrecioPosicionamiento1();
 
-    @Query("SELECT COUNT(s) FROM SolicitudesEntity s JOIN PagoEntity p ON s.id = p.idsolicitud " +
+    @Query("SELECT COUNT(s) FROM SolicitudesEntity s JOIN PagoEntity p ON s.idpago = p.id " +
             "WHERE p.posicionamiento >= 4 AND p.posicionamiento <= 10")
     public int contarSolicitudesPrecioPosicionamiento2();
 
-    @Query("SELECT COUNT(s) FROM SolicitudesEntity s JOIN PagoEntity p ON s.id = p.idsolicitud " +
+    @Query("SELECT COUNT(s) FROM SolicitudesEntity s JOIN PagoEntity p ON s.idpago = p.id " +
             "WHERE p.posicionamiento > 10")
     public int contarSolicitudesPrecioPosicionamiento3();
 
-    @Query("SELECT COUNT(s) FROM SolicitudesEntity s JOIN PagoEntity p ON s.id = p.idsolicitud WHERE s.dia = :fecha AND p.posicionamiento > 0")
+    @Query("SELECT COUNT(s) FROM SolicitudesEntity s JOIN PagoEntity p ON s.idpago = p.id WHERE s.dia = :fecha AND p.posicionamiento > 0 order by p.posicionamiento desc" )
     int contarSolicitudesPrecioPosicionamientoPorFecha(@Param("fecha") LocalDate fecha);
 }

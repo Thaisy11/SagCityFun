@@ -27,7 +27,7 @@ public class PagoEntity {
 
     private Long id;
     private float posicionamiento;
-    private Long idsolicitud;
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

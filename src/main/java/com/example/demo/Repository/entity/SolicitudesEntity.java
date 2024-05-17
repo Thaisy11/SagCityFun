@@ -58,10 +58,11 @@ public class SolicitudesEntity {
     private Date dia;
     private String hora;
     private String precio;
-    private float precioposicionamiento;
     private String link;
     private Long idestado;
     private Long idusuario;
+    private Long idpago;
+
 
 
 

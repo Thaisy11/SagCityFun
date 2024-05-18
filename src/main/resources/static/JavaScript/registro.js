@@ -20,21 +20,15 @@ btnreg.addEventListener('click', function (e) {
         case !(correcto = validaNombre(nom)):
             nom.focus();
             break;
-        /* case !(correcto = campos_llenos(mail)):
-             mail.focus();
-             break;          */
+
         case !(correcto = validaEmail(mail)):
             mail.focus();
             break;
-        /* case !(correcto = campos_llenos(pass)):
-             pass.focus();
-             break;     */
+
         case !(correcto = validaPass(pass)):
             pass.focus();
             break;
-        /*case !(correcto = campos_llenos(repass)):
-            repass.focus();
-            break;  */
+
         case !(correcto = passCoincida(pass, repass)):
             pass.focus();
             break;

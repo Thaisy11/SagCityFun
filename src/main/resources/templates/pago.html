@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <title>HTML</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{css/pago.css}" />
   <link rel="stylesheet" th:href="@{css/estilo.css}" />
   <link rel="stylesheet" th:href="@{css/estilo_gran.css}" />
-  <link rel="stylesheet" th:href="@{css/pago.css}" />
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Roboto}" />
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Wallpoet}" />
   
@@ -63,18 +63,21 @@
         <h4><b>Tus datos de pago</b></h4>
       </label>
 
-      <label id="titu"><b>Titular de la tarjeta</b></label>
-      <input type="text" placeholder="ej. Rubén Pérez Martínez" name="titular" required>
+      <label ><b>Titular de la tarjeta</b></label>
+      <input id="titu" placeholder="ej. Rubén Pérez Martínez" name="titular">
 
 
-      <label id="num"><b>Número de tarjeta</b></label>
-      <input type="text" placeholder="XXXX XXXX XXXX XXXX" name="fecha" required>
+      <label><b>Número de tarjeta</b></label>
+      <input  id="num" placeholder="XXXX XXXX XXXX XXXX">
 
+      <label ><b>Caducidad de la tarjeta</b></label>
+<div class="caducidad">
+  <input type="number" id="cadmes" placeholder="Mes" name="mes" >
+  <input type="number" id="cadanyo" placeholder="Año" name="anyo" >
+</div>
 
-      <label id="cad"><b>Caducidad de la tarjeta</b></label>
-      <input type="number" placeholder="" name="caducidad" required>
-      <label id="ccv"><b>CCV</b></label>
-      <input type="text" placeholder="" name="link" required>
+      <label ><b>CCV</b></label>
+      <input type="text"  id="ccv"placeholder="" name="ccv" >
 
       <section>
         <h3 class="negro">TOTAL</h3>
@@ -86,7 +89,7 @@
 
 
     </form>
-
+    <div class="avisos"></div>
     <script th:src="@{/javaScript/base.js}"></script>
     <script th:src="@{/JavaScript/pago.js}"></script>
   </main>

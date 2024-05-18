@@ -19,7 +19,7 @@ function cargarPAG() {
 
 // CARGAR ARTÍCULOS DE LA TIENDA
 async function cargarSolicitudes() {
-    await realizarPeticionesActivas();
+    await realizarPeticionesPasadas();
 
 }
 
@@ -41,7 +41,10 @@ function funcionFecha() {
 
 function retrocederDia() {
     const fechaActual = new Date();
-    if (fechaSeleccionada > fechaActual) {
+    const fechaAyer = new Date(fechaActual);
+    fechaAyer.setDate(fechaAyer.getDate() - 1);
+
+    if (fechaSeleccionada > fechaAyer) {
         fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
         funcionFecha();
         cargarSolicitudes();
@@ -49,13 +52,16 @@ function retrocederDia() {
 }
 
 function avanzarDia() {
-    fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1);
-    funcionFecha();
-    cargarSolicitudes();
+    const fechaActual = new Date();
+    if (fechaSeleccionada < fechaActual) {
+        fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1);
+        funcionFecha();
+        cargarSolicitudes();
+    }
 }
 
-function realizarPeticionesActivas() {
-    let url = '/SaguntoCityFun/solicitudes/activas';
+function realizarPeticionesPasadas() {
+    let url = '/SaguntoCityFun/solicitudes/pasadas';
     console.log("a punto de hacer el fetch");
 
     fetch(url, {
@@ -66,7 +72,7 @@ function realizarPeticionesActivas() {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Error al cargar eventos activos. Estado: ${response.status}`);
+                throw new Error(`Error al cargar eventos pasados. Estado: ${response.status}`);
             }
 
             return response.json();
@@ -76,7 +82,7 @@ function realizarPeticionesActivas() {
         })
         .catch(error => {
             console.error(error);
-            alert("Error en la carga de eventos. Por favor, inténtelo de nuevo.");
+            alert("Error en la carga de eventos pasados. Por favor, inténtelo de nuevo.");
         });
 }
 function mostrarEventos(datosJSON) {

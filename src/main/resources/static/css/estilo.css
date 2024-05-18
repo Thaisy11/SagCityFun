@@ -193,8 +193,8 @@ form {
 
 #pago {
     margin-top: 100px;
-    margin: 0;
-    width: 100%;
+    margin: 0 auto;
+    width: 60%;
     background-color: #ffffff;
     color: #3C3C3C;
     text-align: left;
@@ -216,7 +216,23 @@ form {
 #pago input {
     background-color: rgb(213, 192, 244);
     width: 90%;
+    margin: 10px;
 
+}
+.caducidad {
+    display: flex;
+}
+
+.caducidad input {
+    width: 40%; /* Cada input ocupa la mitad del espacio */
+    margin: 10px; /* Ajusta el margen entre los campos */
+}
+form section {
+    margin-left: 60%; /* Ajusta el margen del section para centrarlo */
+}
+
+.pago div {
+    margin: 20px; /* Ajusta el margen entre los métodos de pago */
 }
 
 header {

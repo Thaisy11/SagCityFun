@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", cargarPosicionamiento);
+document.addEventListener("DOMContentLoaded", cargarPAG);
 
 let btnevento = document.getElementById("btnevento");
 let nom = document.getElementById('nom');
@@ -15,11 +15,19 @@ var correcto;
 
 let elementos = [nom, local, fecha, hora, precio];
 
+
+
+function cargarPAG() {
+    cargarPosicionamiento();
+
+
+}
 btnevento.addEventListener('click', function (e) {
     e.preventDefault();
 
     switch (true) {
         case !(correcto = validaNombre(nom.value)):
+            console.log(nom.value);
             nom.focus();
             break;
 
@@ -27,6 +35,9 @@ btnevento.addEventListener('click', function (e) {
             break;
 
         default:
+            let idpagoString = sessionStorage.getItem('pago');
+            let idpago = parseFloat(idpagoString);
+            console.log(idpago);
             const registro = {
                 "idusuario": idUsuario,
                 "idestado": 1,
@@ -36,6 +47,7 @@ btnevento.addEventListener('click', function (e) {
                 "hora": hora.value,
                 "precio": precio.value,
                 "link": link.value,
+                "idpago": idpago
             };
             console.log(registro);
             realizarPeticiones(registro);
@@ -46,6 +58,10 @@ btnevento.addEventListener('click', function (e) {
 function cargarPosicionamiento() {
     posicionamiento.innerHTML = '';
 
+
+
+
+    // Añadir el listener para la fecha
     fecha.addEventListener('change', function (e) {
         const selectedDate = fecha.value;
         console.log(selectedDate);
@@ -77,13 +93,11 @@ function cargarDatosPosicionamiento(conteo) {
     posicionamiento.innerHTML = '';
     console.log("conteo en cargarDatosPos: " + conteo);
 
-    // Agregar la opción por defecto "No pagar posicionamiento" con valor 0
     let defaultOption = document.createElement('option');
     defaultOption.value = 0;
     defaultOption.textContent = "No pagar posicionamiento";
     posicionamiento.appendChild(defaultOption);
 
-    // Definir los valores de precio según el conteo de solicitudes
     let options = [];
     if (conteo <= 3) {
         options = [2.99];
@@ -95,7 +109,6 @@ function cargarDatosPosicionamiento(conteo) {
         options = ["Sin datos"];
     }
 
-    // Agregar las opciones al select
     options.forEach(val => {
         let option = document.createElement('option');
         option.value = val;
@@ -103,26 +116,48 @@ function cargarDatosPosicionamiento(conteo) {
         posicionamiento.appendChild(option);
     });
 
-    // Establecer un evento de cambio en el select
     posicionamiento.addEventListener('change', function (e) {
-        let selectedOption = posicionamiento.options[posicionamiento.selectedIndex];
-        console.log("Precio seleccionado:", selectedOption.textContent);
-        const pago = crearElemento( "button", document.getElementById("posicionamiento"));
-        pago.textContent= "Ir al pago";
+        let seleccion = posicionamiento.options[posicionamiento.selectedIndex];
+        console.log("Precio seleccionado:", seleccion.textContent);
+        sessionStorage.setItem("seleccion", seleccion.textContent);
+
+
+        // Crear un nuevo botón "Ir al pago"
+        const pago = document.createElement("button");
+        pago.id = "btnpago";
+        pago.textContent = "Ir al pago";
         pago.addEventListener('click', function (e) {
             e.preventDefault();
             window.location.href = "/SaguntoCityFun/pago";
         });
-        posicionamiento.parentNode.insertBefore(pago, posicionamiento.nextSibling); // Inserta el botón después del select
 
+        posicionamiento.parentNode.insertBefore(pago, posicionamiento.nextSibling);
     });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const pagoCompletado = sessionStorage.getItem('pagoCompletado');
+    if (pagoCompletado === 'true') {
+        eliminarBotonPago();
+        sessionStorage.removeItem('pagoCompletado');
+    }
+});
+
+function eliminarBotonPago() {
+    const btnPago = document.getElementById('btnpago');
+    if (btnPago) {
+        btnPago.remove();
+    }
+}
+
+
+
+
 function validaNombre(nom) {
-    var nomexpreg = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]{2,50}$/;
+    var nomexpreg = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]{5,20}$/;
     if (!nomexpreg.test(nom)) {
         contenido.innerHTML = "";
-        contenido.innerHTML += "El nombre del evento debe tener entre 2 y 50 caracteres";
+        contenido.innerHTML += "El nombre del evento debe tener entre 5 y 20 caracteres";
         return false;
     }
     return true;

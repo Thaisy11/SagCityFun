@@ -9,19 +9,17 @@ let precio = document.getElementById('precio');
 let link = document.getElementById('link');
 let posicionamiento = document.getElementById('posicionamiento');
 let idUsuario = sessionStorage.getItem("id");
+let idPago = sessionStorage.getItem("pago");
 
 let contenido = document.querySelector(".avisos");
 var correcto;
 
 let elementos = [nom, local, fecha, hora, precio];
 
-
-
 function cargarPAG() {
     cargarPosicionamiento();
-
-
 }
+
 btnevento.addEventListener('click', function (e) {
     e.preventDefault();
 
@@ -58,11 +56,9 @@ btnevento.addEventListener('click', function (e) {
 function cargarPosicionamiento() {
     posicionamiento.innerHTML = '';
 
-
-
-
     // Añadir el listener para la fecha
     fecha.addEventListener('change', function (e) {
+        validarFechaFutura();
         const selectedDate = fecha.value;
         console.log(selectedDate);
 
@@ -121,7 +117,6 @@ function cargarDatosPosicionamiento(conteo) {
         console.log("Precio seleccionado:", seleccion.textContent);
         sessionStorage.setItem("seleccion", seleccion.textContent);
 
-
         // Crear un nuevo botón "Ir al pago"
         const pago = document.createElement("button");
         pago.id = "btnpago";
@@ -134,24 +129,6 @@ function cargarDatosPosicionamiento(conteo) {
         posicionamiento.parentNode.insertBefore(pago, posicionamiento.nextSibling);
     });
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    const pagoCompletado = sessionStorage.getItem('pagoCompletado');
-    if (pagoCompletado === 'true') {
-        eliminarBotonPago();
-        sessionStorage.removeItem('pagoCompletado');
-    }
-});
-
-function eliminarBotonPago() {
-    const btnPago = document.getElementById('btnpago');
-    if (btnPago) {
-        btnPago.remove();
-    }
-}
-
-
-
 
 function validaNombre(nom) {
     var nomexpreg = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]{5,20}$/;
@@ -177,6 +154,22 @@ function campos_llenos(campo) {
     if (campo.value.trim() === "") {
         contenido.innerHTML = "";
         contenido.innerHTML += "El " + campo.name + " no puede estar vacío";
+        return false;
+    }
+    return true;
+}
+
+function validarFechaFutura(fecha) {
+    let hoy = new Date();
+    let fechaSeleccio = new Date(fecha);
+console.log(fechaSeleccio);
+    // Ajustar la fecha de hoy para excluir la hora
+    hoy.setHours(0, 0, 0, 0);
+
+    if (fechaSeleccio <= hoy) {
+        contenido.innerHTML = "";
+        contenido.innerHTML += "La fecha debe ser posterior a hoy";
+        fecha.focus();
         return false;
     }
     return true;

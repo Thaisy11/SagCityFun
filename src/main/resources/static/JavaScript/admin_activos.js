@@ -9,10 +9,19 @@ let fechaSeleccionada = new Date();
 function cargarPAG() {
     funcionFecha();
     cargarSolicitudes();
-    const flechaIzquierda = document.querySelector('aside img:first-of-type');
-    const flechaDerecha = document.querySelector('aside img:last-of-type');
+    const flechaIzquierda = document.querySelector('.flecha-izqMo'); // Flecha izquierda para dispositivos móviles
+    const flechaDerecha = document.querySelector('.flecha-dxaMO'); // Flecha derecha para dispositivos móviles
+    const flechaIzquierdaP = document.querySelector('.flecha_izd'); // Flecha izquierda para dispositivos grandes
+    const flechaDerechaP = document.querySelector('.flecha_dxa'); // Flecha derecha para dispositivos grandes
+
+    // Agrega event listeners a las flechas para dispositivos móviles
     flechaIzquierda.addEventListener('click', retrocederDia);
     flechaDerecha.addEventListener('click', avanzarDia);
+
+    // Agrega event listeners a las flechas para dispositivos grandes
+    flechaIzquierdaP.addEventListener('click', retrocederDia);
+    flechaDerechaP.addEventListener('click', avanzarDia);
+
 
 
 }
@@ -41,18 +50,22 @@ function funcionFecha() {
 
 function retrocederDia() {
     const fechaActual = new Date();
-    if (fechaSeleccionada > fechaActual) {
-        fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
+    const fechaMinima = new Date(fechaActual);
+    fechaMinima.setDate(fechaActual.getDate() - 1); // Fecha mínima es el día actual menos 1 día
+
+    if (fechaSeleccionada > fechaMinima) { // Verifica si la fecha seleccionada es posterior a la fecha mínima
+        fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1); // Resta un día a la fecha seleccionada
         funcionFecha();
         cargarSolicitudes();
     }
 }
 
 function avanzarDia() {
-    fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1);
+    fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1); // Suma un día a la fecha seleccionada
     funcionFecha();
     cargarSolicitudes();
 }
+
 
 function realizarPeticionesActivas() {
     let url = '/SaguntoCityFun/solicitudes/activas';

@@ -11,10 +11,19 @@ let btnrechazar;
 function cargarPAG() {
     funcionFecha();
     cargarSolicitudes();
-    const flechaIzquierda = document.querySelector('aside img:first-of-type');
-    const flechaDerecha = document.querySelector('aside img:last-of-type');
+    const flechaIzquierda = document.querySelector('.flecha-izqMo'); // Flecha izquierda para dispositivos móviles
+    const flechaDerecha = document.querySelector('.flecha-dxaMO'); // Flecha derecha para dispositivos móviles
+    const flechaIzquierdaP = document.querySelector('.flecha_izd'); // Flecha izquierda para dispositivos grandes
+    const flechaDerechaP = document.querySelector('.flecha_dxa'); // Flecha derecha para dispositivos grandes
+
+    // Agrega event listeners a las flechas para dispositivos móviles
     flechaIzquierda.addEventListener('click', retrocederDia);
     flechaDerecha.addEventListener('click', avanzarDia);
+
+
+    // Agrega event listeners a las flechas para dispositivos grandes
+    flechaIzquierdaP.addEventListener('click', retrocederDia);
+    flechaDerechaP.addEventListener('click', avanzarDia);
 
 
 }
@@ -126,46 +135,5 @@ function mostrarEventos(datosJSON) {
         }
     }
 
-}
-btnconfirmar.addEventListener('click', function (){
-    realizarPeticiones();
-})
-function realizarPeticiones() {
-    console.log(usuario);
-    let url = '/SaguntoCityFun/solicitudes/';
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(usuario)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error en el login del usuario. Estado: ${response.status}`);
-            }
-
-            return response.json();
-        })
-        .then(usuarioOK => {
-            console.log('Usuario:', usuarioOK);
-
-
-            sessionStorage.setItem("email", usuarioOK.email);
-            sessionStorage.setItem("contraUsuario", usuarioOK.contrasena);
-            sessionStorage.setItem("rol", usuarioOK.rol);
-            sessionStorage.setItem("nombre", usuarioOK.nombre);
-            sessionStorage.setItem("id",usuarioOK.id);
-
-            if (usuarioOK.rol === "A") {
-                window.location.href = "/SaguntoCityFun/admin_activos";
-            } else if (usuarioOK.rol === "U") {
-                window.location.href = "/SaguntoCityFun/eventos";
-            }
-        })
-        .catch(error => {
-            console.error(error);
-            alert("Error en el inicio de sesión. Por favor, inténtelo de nuevo.");
-        });
 }
 

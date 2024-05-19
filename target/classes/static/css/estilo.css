@@ -31,9 +31,9 @@ article h2, h5, p{
 }
 .avisos {
     margin-top: 40px;
-    height: 100px;
+    height: 20px;
     width: 100%;
-    color: black;
+    color: #FF6F49;
 }
 
 h2 {
@@ -135,6 +135,7 @@ button {
     color: white;
     height: 50px;
     text-align: center;
+    margin: 5px;
 
 
 }
@@ -190,6 +191,7 @@ form {
     margin: 10%;
     color: #ffffff;
 }
+
 
 #pago {
     margin-top: 100px;
@@ -377,3 +379,13 @@ margin-left: 10px;
     margin-bottom: 5px;
 
 }
+/* flechas */
+
+.flecha_dxa, .flecha_izd {
+    display: inline;
+}
+
+.flecha-izqMo, .flecha-dxaMO {
+    display: none;
+}
+

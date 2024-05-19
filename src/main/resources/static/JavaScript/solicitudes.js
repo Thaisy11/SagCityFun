@@ -11,10 +11,18 @@ function cargarPAG() {
     muestraUsuario();
     funcionFecha();
     cargarSolicitudes();
-    const flechaIzquierda = document.querySelector('aside img:first-of-type');
-    const flechaDerecha = document.querySelector('aside img:last-of-type');
+    const flechaIzquierda = document.querySelector('.flecha-izqMo'); // Flecha izquierda para dispositivos móviles
+    const flechaDerecha = document.querySelector('.flecha-dxaMO'); // Flecha derecha para dispositivos móviles
+    const flechaIzquierdaP = document.querySelector('.flecha_izd'); // Flecha izquierda para dispositivos grandes
+    const flechaDerechaP = document.querySelector('.flecha_dxa'); // Flecha derecha para dispositivos grandes
+
+    // Agrega event listeners a las flechas para dispositivos móviles
     flechaIzquierda.addEventListener('click', retrocederDia);
     flechaDerecha.addEventListener('click', avanzarDia);
+
+    // Agrega event listeners a las flechas para dispositivos grandes
+    flechaIzquierdaP.addEventListener('click', avanzarDia);
+    flechaDerechaP.addEventListener('click', avanzarDia);
 
 
 }

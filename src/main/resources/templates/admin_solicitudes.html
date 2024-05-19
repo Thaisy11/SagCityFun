@@ -15,8 +15,8 @@
 <body>
   <header>
     <div>
-      <a th:href="@{home}">
-          <img src="@{/images/Salir.png}" alt="icono_volver">
+      <a th:href="@{/login}">
+        <img th:src="@{/images/Salir.png}" alt="icono_volver">
       </a>
   </div>
   <div>
@@ -50,11 +50,10 @@
     <article>evento</article>
     
     <div>
-      <a th:href="@{eventos}">
-         <img th:src="@{/images/flech_abajo.png}" alt="fle">
-       </a>
+
    </div>
- 
+    <script th:src="@{/javaScript/base.js}"></script>
+    <script th:src="@{/JavaScript/admin_solicitudes.js}"></script>
   </main>
   <footer>
     <div>

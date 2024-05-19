@@ -40,13 +40,11 @@ function funcionFecha() {
 }
 
 function retrocederDia() {
-    const fechaActual = new Date();
-    if (fechaSeleccionada > fechaActual) {
-        fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
-        funcionFecha();
-        cargarSolicitudes();
-    }
+    fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
+    funcionFecha();
+    cargarSolicitudes();
 }
+
 
 function avanzarDia() {
     fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1);
@@ -55,7 +53,7 @@ function avanzarDia() {
 }
 
 function realizarPeticionesActivas() {
-    let url = '/SaguntoCityFun/solicitudes/activas';
+    let url = '/SaguntoCityFun/solicitudes/rechazadas';
     console.log("a punto de hacer el fetch");
 
     fetch(url, {
@@ -66,7 +64,7 @@ function realizarPeticionesActivas() {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Error al cargar eventos activos. Estado: ${response.status}`);
+                throw new Error(`Error al cargar eventos rechazados. Estado: ${response.status}`);
             }
 
             return response.json();

@@ -339,11 +339,41 @@ aside {
 }
 
 article {
+
     background-color: #743DB2;
     opacity: 0.7;
     width: 80%;
-    height: 180px;
+    height: auto;
+    min-height: 80px;
     border-radius: 15px;
     margin: auto;
+
+
+
+}
+.sinEventos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.boton-confirmar {
+    background-color: #36BB70;
+    color: white;
+    border: none;
+    border-radius: 0px;
+font-family: Comfortaa;
+    margin-right: 10px;
+    margin-bottom: 5px;
+
+}
+
+.boton-rechazar {
+    background-color: #FF6F49;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    font-family: Comfortaa;
+margin-left: 10px;
+    margin-bottom: 5px;
 
 }

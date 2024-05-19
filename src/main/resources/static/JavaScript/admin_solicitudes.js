@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', cargarPAG);
 let paginaActual = 1;
 const articulosPorPagina = 4;
 let fechaSeleccionada = new Date();
+let btnconfirmar;
+let btnrechazar;
 
 
 // CUANDO SE CARGA EL DOM
@@ -40,12 +42,9 @@ function funcionFecha() {
 }
 
 function retrocederDia() {
-    const fechaActual = new Date();
-    if (fechaSeleccionada > fechaActual) {
-        fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
-        funcionFecha();
-        cargarSolicitudes();
-    }
+    fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
+    funcionFecha();
+    cargarSolicitudes();
 }
 
 function avanzarDia() {
@@ -108,7 +107,6 @@ function mostrarEventos(datosJSON) {
     if (eventosDeHoy.length === 0) {
         let divSinEventos = crearElemento('article', main);
         divSinEventos.classList.add('sinEventos');
-
         crearElementoTexto("No hay eventos en esta fecha", 'h2', divSinEventos);
     } else {
         for (let i = inicio; i < fin && i < eventosDeHoy.length; i++) {
@@ -118,8 +116,56 @@ function mostrarEventos(datosJSON) {
             crearElementoTextoAdicional(eventosDeHoy[i].hora, "Hora del evento: ", 'p', divEvento);
             crearElementoTextoAdicional(eventosDeHoy[i].precio, "Precio de la entrada: ", 'p', divEvento);
             crearElementoTexto(eventosDeHoy[i].link, 'p', divEvento);
+            btnconfirmar= crearElementoTexto('APROBAR', 'button', divEvento);
+
+
+            btnrechazar= crearElementoTexto('RECHAZAR', 'button', divEvento);
+            btnrechazar.classList.add('boton-rechazar');
+            btnconfirmar.classList.add('boton-confirmar');
+
         }
     }
 
+}
+btnconfirmar.addEventListener('click', function (){
+    realizarPeticiones();
+})
+function realizarPeticiones() {
+    console.log(usuario);
+    let url = '/SaguntoCityFun/solicitudes/';
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(usuario)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error en el login del usuario. Estado: ${response.status}`);
+            }
+
+            return response.json();
+        })
+        .then(usuarioOK => {
+            console.log('Usuario:', usuarioOK);
+
+
+            sessionStorage.setItem("email", usuarioOK.email);
+            sessionStorage.setItem("contraUsuario", usuarioOK.contrasena);
+            sessionStorage.setItem("rol", usuarioOK.rol);
+            sessionStorage.setItem("nombre", usuarioOK.nombre);
+            sessionStorage.setItem("id",usuarioOK.id);
+
+            if (usuarioOK.rol === "A") {
+                window.location.href = "/SaguntoCityFun/admin_activos";
+            } else if (usuarioOK.rol === "U") {
+                window.location.href = "/SaguntoCityFun/eventos";
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Error en el inicio de sesión. Por favor, inténtelo de nuevo.");
+        });
 }
 

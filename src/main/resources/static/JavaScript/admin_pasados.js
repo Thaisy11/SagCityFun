@@ -41,15 +41,16 @@ function funcionFecha() {
 
 function retrocederDia() {
     const fechaActual = new Date();
-    const fechaAyer = new Date(fechaActual);
-    fechaAyer.setDate(fechaAyer.getDate() - 1);
 
-    if (fechaSeleccionada > fechaAyer) {
-        fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
-        funcionFecha();
-        cargarSolicitudes();
+    if (fechaSeleccionada > fechaActual) {
+        return; // No retroceder más allá del día actual
     }
+
+    fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
+    funcionFecha();
+    cargarSolicitudes();
 }
+
 
 function avanzarDia() {
     const fechaActual = new Date();
@@ -113,6 +114,8 @@ function mostrarEventos(datosJSON) {
 
     if (eventosDeHoy.length === 0) {
         let divSinEventos = crearElemento('article', main);
+        divSinEventos.classList.add('sinEventos');
+
         crearElementoTexto("No hay eventos en esta fecha", 'h2', divSinEventos);
     } else {
         for (let i = inicio; i < fin && i < eventosDeHoy.length; i++) {

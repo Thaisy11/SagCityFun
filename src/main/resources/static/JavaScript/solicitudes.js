@@ -9,6 +9,7 @@ let fechaSeleccionada = new Date();
 // CUANDO SE CARGA EL DOM
 function cargarPAG() {
     muestraUsuario();
+    ocultarMiZona();
     funcionFecha();
     cargarSolicitudes();
     const flechaIzquierda = document.querySelector('.flecha-izqMo'); // Flecha izquierda para dispositivos móviles
@@ -141,11 +142,21 @@ function mostrarBotonAgregarEvento() {
 
     // Comprobar si el usuario está registrado
     if (usuarioID) {
+
         botonAgregarEvento.addEventListener('click', function () {
             window.location.href = '/SaguntoCityFun/nuevoEvento'; // Redireccionar a la página crearEvento
         });
         main.appendChild(botonAgregarEvento);
 
+    }
+
+}
+function ocultarMiZona() {
+    const usuarioID = sessionStorage.getItem("id");
+    const mizona = document.getElementById('mizona');
+
+    if (!usuarioID) {
+        mizona.style.display = "none";
     }
 }
 

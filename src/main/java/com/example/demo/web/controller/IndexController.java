@@ -54,11 +54,16 @@ public class IndexController {
     public String admin_activos() {
         return "admin_activos";
     }
-    
+    @GetMapping("/zona")
+    public String zona() {
+        return "zona";
+    }
 
 
 
 
 
-    
+
+
+
 }

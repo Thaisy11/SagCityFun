@@ -23,7 +23,5 @@ public interface Base2Service <SolicitudesEntity> {
    public int contarSolicitudesPrecioPosicionamiento1();
    public int  contarSolicitudesPrecioPosicionamiento2();
 
-
-
     public int contarSolicitudesPrecioPosicionamientoPorFecha(LocalDate fecha);
 }

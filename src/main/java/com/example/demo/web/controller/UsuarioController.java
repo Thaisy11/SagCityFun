@@ -1,8 +1,10 @@
 package com.example.demo.web.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import com.example.demo.Repository.entity.SolicitudesEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +62,35 @@ public class UsuarioController{
         usuarioService.save(usuario);
         return ResponseEntity.ok(usuario);
     }
-  @PostMapping(path = "/registrar")
+
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<Boolean> actualizarUsuario(@PathVariable Long id, @RequestBody UsuarioEntity usuarioActualizado) {
+        Optional<UsuarioEntity> optionalUsuario = usuarioRepository.findById(id);
+
+        if (!optionalUsuario.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
+        }
+
+        // Obtener la entidad existente
+        UsuarioEntity usuario = optionalUsuario.get();
+
+        // Actualizar los campos necesarios
+        usuario.setNombre(usuarioActualizado.getNombre());
+        usuario.setContrasena(usuarioActualizado.getContrasena());
+        usuario.setEmail(usuarioActualizado.getEmail());
+
+        // Guardar la entidad actualizada
+        usuarioRepository.save(usuario);
+
+        // Devolver true indicando que la actualización fue exitosa
+        return ResponseEntity.ok(true);
+    }
+
+
+
+
+
+    @PostMapping(path = "/registrar")
     public ResponseEntity<UsuarioEntity> registro(@RequestBody UsuarioEntity usuario){
         if (usuario == null){
             return ResponseEntity.badRequest().build();

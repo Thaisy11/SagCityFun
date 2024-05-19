@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', cargarPAG);
+
 // VARIABLES PARA LA PAGINACIÓN
 let paginaActual = 1;
 const articulosPorPagina = 4;
 let fechaSeleccionada = new Date();
 let btnconfirmar;
 let btnrechazar;
-
+let idpago = sessionStorage.getItem("pago");
 
 // CUANDO SE CARGA EL DOM
 function cargarPAG() {
@@ -20,18 +21,14 @@ function cargarPAG() {
     flechaIzquierda.addEventListener('click', retrocederDia);
     flechaDerecha.addEventListener('click', avanzarDia);
 
-
     // Agrega event listeners a las flechas para dispositivos grandes
-    flechaIzquierdaP.addEventListener('click', retrocederDia);
-    flechaDerechaP.addEventListener('click', avanzarDia);
-
-
+    flechaIzquierdaP.addEventListener('click', avanzarDia);
+    flechaDerechaP.addEventListener('click', retrocederDia);
 }
 
 // CARGAR ARTÍCULOS DE LA TIENDA
 async function cargarSolicitudes() {
     await realizarPeticionesActivas();
-
 }
 
 function obtenerFechaFormateada(fecha) {
@@ -51,7 +48,7 @@ function funcionFecha() {
 }
 
 function retrocederDia() {
-    fechaSeleccionada.setDate(fechaSeleccionada.getDate() -1 );
+    fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
     funcionFecha();
     cargarSolicitudes();
 }
@@ -63,7 +60,7 @@ function avanzarDia() {
 }
 
 function realizarPeticionesActivas() {
-    let url = '/SaguntoCityFun/solicitudes/activas';
+    let url = '/SaguntoCityFun/solicitudes/pendientes';
     console.log("a punto de hacer el fetch");
 
     fetch(url, {
@@ -87,6 +84,7 @@ function realizarPeticionesActivas() {
             alert("Error en la carga de eventos. Por favor, inténtelo de nuevo.");
         });
 }
+
 function mostrarEventos(datosJSON) {
     console.log(datosJSON);
     const inicio = (paginaActual - 1) * articulosPorPagina;
@@ -125,15 +123,75 @@ function mostrarEventos(datosJSON) {
             crearElementoTextoAdicional(eventosDeHoy[i].hora, "Hora del evento: ", 'p', divEvento);
             crearElementoTextoAdicional(eventosDeHoy[i].precio, "Precio de la entrada: ", 'p', divEvento);
             crearElementoTexto(eventosDeHoy[i].link, 'p', divEvento);
-            btnconfirmar= crearElementoTexto('APROBAR', 'button', divEvento);
-
-
-            btnrechazar= crearElementoTexto('RECHAZAR', 'button', divEvento);
+            btnconfirmar = crearElementoTexto('APROBAR', 'button', divEvento);
+            btnrechazar = crearElementoTexto('RECHAZAR', 'button', divEvento);
             btnrechazar.classList.add('boton-rechazar');
             btnconfirmar.classList.add('boton-confirmar');
 
+            btnconfirmar.addEventListener('click', function() {
+                const idSolicitud = eventosDeHoy[i].id; // Obtener el ID de la solicitud
+                realizarPeticionesAprobar(idSolicitud); // Llamar a la función para aprobar la solicitud
+            });
+
+            btnrechazar.addEventListener('click', function() {
+                const idSolicitud = eventosDeHoy[i].id; // Obtener el ID de la solicitud
+                realizarPeticionesRechazar(idSolicitud); // Llamar a la función para rechazar la solicitud
+            });
         }
     }
-
 }
+
+function realizarPeticionesAprobar(idSolicitud) {
+    const url = `/SaguntoCityFun/solicitudes/aprobar/${idSolicitud}`; // URL para la actualización de la solicitud
+    console.log("el id de la solicitud es: " + idSolicitud);
+    fetch(url, {
+        method: 'PUT', // Método PUT para actualizar la solicitud
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ idestado: 2 }) // Enviar el nuevo estado de la solicitud
+    })
+        .then(response => {
+            cargarPAG();
+            if (!response.ok) {
+                throw new Error(`Error al aprobar la solicitud. Estado: ${response.status}`);
+            }
+            // Aquí puedes actualizar la interfaz de usuario si es necesario
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Error al aprobar la solicitud. Por favor, inténtelo de nuevo.");
+        });
+}
+
+function realizarPeticionesRechazar(idSolicitud) {
+    const url = `/SaguntoCityFun/solicitudes/aprobar/${idSolicitud}`; // URL para la actualización de la solicitud
+    console.log("el id de la solicitud es: " + idSolicitud);
+    fetch(url, {
+        method: 'PUT', // Método PUT para actualizar la solicitud
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ idestado: 3 }) // Enviar el nuevo estado de la solicitud
+    })
+        .then(response => {
+            cargarPAG();
+            if (!response.ok) {
+                throw new Error(`Error al rechazar la solicitud. Estado: ${response.status}`);
+            }
+            // Aquí puedes actualizar la interfaz de usuario si es necesario
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Error al rechazar la solicitud. Por favor, inténtelo de nuevo.");
+        });
+}
+
+// Funciones auxiliares para crear elementos
+function crearElemento(tag, parent) {
+    const elemento = document.createElement(tag);
+    parent.appendChild(elemento);
+    return elemento;
+}
+
 

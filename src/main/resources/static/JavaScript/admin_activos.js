@@ -19,8 +19,8 @@ function cargarPAG() {
     flechaDerecha.addEventListener('click', avanzarDia);
 
     // Agrega event listeners a las flechas para dispositivos grandes
-    flechaIzquierdaP.addEventListener('click', retrocederDia);
-    flechaDerechaP.addEventListener('click', avanzarDia);
+    flechaIzquierdaP.addEventListener('click', avanzarDia);
+    flechaDerechaP.addEventListener('click', retrocederDia);
 
 
 
@@ -51,7 +51,7 @@ function funcionFecha() {
 function retrocederDia() {
     const fechaActual = new Date();
     const fechaMinima = new Date(fechaActual);
-    fechaMinima.setDate(fechaActual.getDate() - 1); // Fecha mínima es el día actual menos 1 día
+    fechaMinima.setDate(fechaActual.getDate() ); // Fecha mínima es el día actual menos 1 día
 
     if (fechaSeleccionada > fechaMinima) { // Verifica si la fecha seleccionada es posterior a la fecha mínima
         fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1); // Resta un día a la fecha seleccionada

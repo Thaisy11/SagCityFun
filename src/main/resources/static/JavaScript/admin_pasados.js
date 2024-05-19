@@ -32,9 +32,12 @@ async function cargarSolicitudes() {
 }
 
 function obtenerFechaFormateada(fecha) {
-    let dia = fecha.getDate();
-    let mes = fecha.getMonth() + 1;
-    let año = fecha.getFullYear();
+    const fechaAyer = new Date(fecha); // Creamos una copia de la fecha para no modificar la original
+    fechaAyer.setDate(fechaAyer.getDate() - 1); // Restamos un día a la fecha copiada
+
+    let dia = fechaAyer.getDate();
+    let mes = fechaAyer.getMonth() + 1;
+    let año = fechaAyer.getFullYear();
 
     dia = (dia < 10) ? '0' + dia : dia;
     mes = (mes < 10) ? '0' + mes : mes;
@@ -47,8 +50,9 @@ function funcionFecha() {
     h4Fecha.textContent = obtenerFechaFormateada(fechaSeleccionada);
 }
 
+
 function retrocederDia() {
-    const fechaActual = new Date();
+    const fechaActual = new Date() ;
 
     if (fechaSeleccionada > fechaActual) {
         return; // No retroceder más allá del día actual
@@ -61,13 +65,19 @@ function retrocederDia() {
 
 
 function avanzarDia() {
-    const fechaActual = new Date();
-    if (fechaSeleccionada < fechaActual) {
-        fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1);
-        funcionFecha();
-        cargarSolicitudes();
+    const fechaHoy = new Date(); // Obtener la fecha actual
+    const fechaAyer = new Date(fechaHoy); // Crear una copia de la fecha actual
+    fechaAyer.setDate(fechaHoy.getDate() - 1); // Restar un día a la copia de la fecha actual
+
+    if (fechaSeleccionada.getTime() < fechaHoy.getTime()) { // Verificar si la fecha seleccionada es anterior a la fecha actual
+        if (fechaSeleccionada.getTime() < fechaAyer.getTime()) { // Verificar si la fecha seleccionada es anterior a la fecha de ayer
+            fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1); // Sumar un día a la fecha seleccionada
+            funcionFecha();
+            cargarSolicitudes();
+        }
     }
 }
+
 
 function realizarPeticionesPasadas() {
     let url = '/SaguntoCityFun/solicitudes/pasadas';

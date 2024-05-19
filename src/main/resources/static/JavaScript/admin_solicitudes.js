@@ -51,7 +51,7 @@ function funcionFecha() {
 }
 
 function retrocederDia() {
-    fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
+    fechaSeleccionada.setDate(fechaSeleccionada.getDate() -1 );
     funcionFecha();
     cargarSolicitudes();
 }

@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', cargarPAG);
-// VARIABLES PARA LA PAGINACIÓN
-let paginaActual = 1;
-const articulosPorPagina = 4;
+
 let fechaSeleccionada = new Date();
 
 
@@ -9,16 +7,14 @@ let fechaSeleccionada = new Date();
 function cargarPAG() {
     funcionFecha();
     cargarSolicitudes();
-    const flechaIzquierda = document.querySelector('.flecha-izqMo'); // Flecha izquierda para dispositivos móviles
-    const flechaDerecha = document.querySelector('.flecha-dxaMO'); // Flecha derecha para dispositivos móviles
-    const flechaIzquierdaP = document.querySelector('.flecha_izd'); // Flecha izquierda para dispositivos grandes
-    const flechaDerechaP = document.querySelector('.flecha_dxa'); // Flecha derecha para dispositivos grandes
+    const flechaIzquierda = document.querySelector('.flecha-izqMo');
+    const flechaDerecha = document.querySelector('.flecha-dxaMO');
+    const flechaIzquierdaP = document.querySelector('.flecha_izd');
+    const flechaDerechaP = document.querySelector('.flecha_dxa');
 
-    // Agrega event listeners a las flechas para dispositivos móviles
+    // FLECHAS FECHA
     flechaIzquierda.addEventListener('click', retrocederDia);
     flechaDerecha.addEventListener('click', avanzarDia);
-
-    // Agrega event listeners a las flechas para dispositivos grandes
     flechaIzquierdaP.addEventListener('click', avanzarDia);
     flechaDerechaP.addEventListener('click', retrocederDia);
 
@@ -26,11 +22,12 @@ function cargarPAG() {
 
 }
 
-// CARGAR ARTÍCULOS DE LA TIENDA
+// CARGAR ACTIVOS
 async function cargarSolicitudes() {
     await realizarPeticionesActivas();
 
 }
+//FUNCIONES DE FECHA ATRAS Y ALANTE
 
 function obtenerFechaFormateada(fecha) {
     let dia = fecha.getDate();
@@ -51,21 +48,22 @@ function funcionFecha() {
 function retrocederDia() {
     const fechaActual = new Date();
     const fechaMinima = new Date(fechaActual);
-    fechaMinima.setDate(fechaActual.getDate() ); // Fecha mínima es el día actual menos 1 día
+    fechaMinima.setDate(fechaActual.getDate() );
 
-    if (fechaSeleccionada > fechaMinima) { // Verifica si la fecha seleccionada es posterior a la fecha mínima
-        fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1); // Resta un día a la fecha seleccionada
+    if (fechaSeleccionada > fechaMinima) {
+        fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
         funcionFecha();
         cargarSolicitudes();
     }
 }
 
 function avanzarDia() {
-    fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1); // Suma un día a la fecha seleccionada
+    fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1);
     funcionFecha();
     cargarSolicitudes();
 }
 
+//PETICION
 
 function realizarPeticionesActivas() {
     let url = '/SaguntoCityFun/solicitudes/activas';
@@ -92,10 +90,10 @@ function realizarPeticionesActivas() {
             alert("Error en la carga de eventos. Por favor, inténtelo de nuevo.");
         });
 }
+
+//MOSTRAR LOS EVENTOS
 function mostrarEventos(datosJSON) {
     console.log(datosJSON);
-    const inicio = (paginaActual - 1) * articulosPorPagina;
-    const fin = inicio + articulosPorPagina;
 
     const fechaSeleccionadaString = fechaSeleccionada.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 

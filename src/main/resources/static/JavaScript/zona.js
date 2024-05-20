@@ -139,7 +139,7 @@ function validaEmail(mail) {
 
 function passCoincida(pass, repass) {
     if (pass.value !== repass.value) {
-        contenido.innerHTML = ""; // Limpiar contenido del div avisos
+        contenido.innerHTML = "";
 
         contenido.innerHTML = "Las contraseñas deben coincidir";
         return false;
@@ -165,7 +165,7 @@ function validaPass(pass) {
 
 
 function realizarPeticiones(registro) {
-    contenido.innerHTML = ""; // Limpiar contenido del div avisos
+    contenido.innerHTML = "";
     console.log(registro);
     let url = `/SaguntoCityFun/u/actualizar/${idusuario}`;
     fetch(url, {

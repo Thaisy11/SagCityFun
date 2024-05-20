@@ -7,11 +7,9 @@ let log_pass = document.getElementById("log_pass");
 //ZONA DE AVISO DE ERROR
 let contenido = document.querySelector(".avisos");
 
-// O si prefieres usar el ID en lugar de la clase
-// let contenido = document.getElementById("avisos");
 let correcto;
 
-//EVENTO SOBRE EL BOTON DEL LOGIN. VALIDACION Y CREACION FORMDATA
+//EVENTO SOBRE EL BOTON DEL LOGIN.
 btnlog.addEventListener('click', function (e) {
     e.preventDefault();
     switch (true) {
@@ -26,18 +24,11 @@ btnlog.addEventListener('click', function (e) {
             log_pass.focus();
             break;
         default:
-
-
-
             const usuario = {
                 "email": log_mail.value,
                 "contrasena": log_pass.value,
 
             };
-
-
-
-
             realizarPeticiones(usuario);
             break;
     }

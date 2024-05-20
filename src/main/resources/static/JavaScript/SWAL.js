@@ -4,7 +4,6 @@
     <!-- SweetAlert JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
-HHHH
     CSS
     .swal2-popup {
     font-family: Comfortaa;

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>HTML</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/estilo.css}" />
+    <link rel="stylesheet" th:href="@{/css/estilo_gran.css}" />
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Roboto}" />
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Wallpoet}" />
+
+</head>
+
+<body>
+<header>
+    <div>
+        <a th:href="@{eventos}">
+            <img th:src="@{/images/flecha.png}" alt="icono_volver">
+        </a>
+    </div>
+    <div>
+        <img th:src="@{/images/logo.png}" alt="logo">
+    </div>
+    <section id="tit">
+        <h1>VIVE EL OCIO NOCTURNO</h1>
+
+    </section>
+</header>
+
+<nav>
+
+    <a th:href="@{eventos}">EVENTOS</a>
+    <a th:href="@{login}">LOGIN</a>
+    <a th:href="@{registro}">REGISTRO</a>
+</nav>
+
+<main>
+    <section>
+        <h2>MODIFICAR MIS DATOS</h2>
+    </section>
+    <form id="regform" action="post">
+
+        <input type="text"  id="nom" placeholder="NOMBRE" name="nombre">
+        <input type="text" id="mail" placeholder="EMAIL" name="email">
+        <label>NUEVA CONTRASEÑA</label>
+        <input type="password" id="pass" placeholder="CONTRASEÑA" name="psw">
+        <input type="password" id="repass" placeholder="REPITE CONTRASEÑA" name="psw2">
+
+
+        <button type="submit" id="btnreg">MODIFICAR</button>
+
+
+    </form>
+    <div class="avisos"></div>
+
+    <script th:src="@{/javaScript/base.js}"></script>
+    <script th:src="@{/JavaScript/zona.js}"></script>
+</main>
+<footer>
+    <div>
+        <img th:src="@{/images/CopyR.png}" alt="copyR">
+    </div>
+    <div><p>SaguntoCityFun de CityFun S.L.</p></div>
+    <div>
+        <img th:src="@{/images/insta.png}" alt="insta">
+    </div>
+</footer>
+
+
+</body>
+
+</html>

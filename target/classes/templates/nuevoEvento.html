@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>HTML</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/estilo.css}" />
+  <link rel="stylesheet" th:href="@{/css/estilo_gran.css}" />
+  <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Roboto}" />
+  <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Wallpoet}" />
+  
+</head>
+
+<body>
+  <header>
+    <div>
+      <a th:href="@{eventos}">
+          <img th:src="@{/images/flecha.png}" alt="icono_volver">
+      </a>
+  </div>
+    <div>
+      <img th:src="@{/images/logo.png}" alt="logo">
+    </div>
+    <section id="tit">
+      <h1>VIVE EL OCIO NOCTURNO</h1>
+
+    </section>
+  </header>
+
+  <nav>
+
+    <a th:href="@{home}">PÁGINA PRINCIPAL</a>
+    <a th:href="@{eventos}">EVENTOS</a>
+    <a th:href="@{login}">LOGIN</a>
+    <a th:href="@{registro}">REGISTRO</a>
+  </nav>
+
+  <main>
+    <section>
+      <h2>NUEVO EVENTO</h2>
+    </section>
+    <form id="nuevoEvento"  method="post">
+
+      <input type="text" id="nombre" placeholder="NOMBRE DEL EVENTO" name="nombre del evento" >
+      <input type="text" id="local" placeholder="LOCAL DEL EVENTO" name="local del evento">
+      <input type="date" id="fecha" placeholder="DÍA DEL EVENTO" name="fecha del evento">
+      <input type="time" id="hora" placeholder="HORA DEL EVENTO" name="hora del evento">
+      <input type="number" id="precio" placeholder="PRECIO DE LA ENTRADA" name="precio de la entrada">
+      <input type="text" id="link" placeholder="LINK A RRSS" >
+      <select id="posicionamiento" name="posicionamiento">
+        <option value="0">Precio Posicionamiento</option>
+        <option value="2.99">2.99</option>
+        <option value="6.99">6.99</option>
+        <option value="12.99">12.99</option>
+      </select>
+
+
+
+      <button type="submit" id="btnevento">AÑADIR EVENTO</button>
+  </form>
+    <div class="avisos"></div>
+
+    <script th:src="@{/javaScript/base.js}"></script>
+    <script th:src="@{/JavaScript/nuevoEvento.js}"></script>
+  </main>
+  <footer>
+    <div>
+      <img th:src="@{/images/CopyR.png}" alt="copyR">
+    </div>
+    <div><p>SaguntoCityFun de CityFun S.L.</p></div>
+    <div>
+      <img th:src="@{/images/insta.png}" alt="insta">
+    </div>
+  </footer>
+
+
+</body>
+
+</html>

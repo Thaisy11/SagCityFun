@@ -389,3 +389,12 @@ margin-left: 10px;
     display: none;
 }
 
+.swal2-popup {
+    font-family: Comfortaa;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px #3C3C3C;
+}
+
+.swal2-title {
+    color: #743DB2;
+}

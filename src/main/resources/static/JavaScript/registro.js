@@ -148,8 +148,16 @@ function realizarPeticiones(registro) {
         })
         .then(RegUsuario => {
             console.log('Usuario:', RegUsuario);
-
             window.location.href = "/SaguntoCityFun/login";
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Usuario creado correctamente",
+                showConfirmButton: false,
+                timer: 5500
+            })
+
+
 
 
         })

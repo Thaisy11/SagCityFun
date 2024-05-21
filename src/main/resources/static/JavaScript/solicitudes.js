@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', cargarPAG);
 
-// VARIABLES PARA LA PAGINACIÓN
-let paginaActual = 1;
-const articulosPorPagina = 4;
 let fechaSeleccionada = new Date();
 
 
@@ -12,16 +9,13 @@ function cargarPAG() {
     ocultarMiZona();
     funcionFecha();
     cargarSolicitudes();
-    const flechaIzquierda = document.querySelector('.flecha-izqMo'); // Flecha izquierda para dispositivos móviles
-    const flechaDerecha = document.querySelector('.flecha-dxaMO'); // Flecha derecha para dispositivos móviles
-    const flechaIzquierdaP = document.querySelector('.flecha_izd'); // Flecha izquierda para dispositivos grandes
-    const flechaDerechaP = document.querySelector('.flecha_dxa'); // Flecha derecha para dispositivos grandes
+    const flechaIzquierda = document.querySelector('.flecha-izqMo');
+    const flechaDerecha = document.querySelector('.flecha-dxaMO');
+    const flechaIzquierdaP = document.querySelector('.flecha_izd');
+    const flechaDerechaP = document.querySelector('.flecha_dxa');
 
-    // Agrega event listeners a las flechas para dispositivos móviles
     flechaIzquierda.addEventListener('click', retrocederDia);
     flechaDerecha.addEventListener('click', avanzarDia);
-
-    // Agrega event listeners a las flechas para dispositivos grandes
     flechaIzquierdaP.addEventListener('click', avanzarDia);
     flechaDerechaP.addEventListener('click', avanzarDia);
 
@@ -144,7 +138,7 @@ function mostrarBotonAgregarEvento() {
     if (usuarioID) {
 
         botonAgregarEvento.addEventListener('click', function () {
-            window.location.href = '/SaguntoCityFun/nuevoEvento'; // Redireccionar a la página crearEvento
+            window.location.href = '/SaguntoCityFun/nuevoEvento';
         });
         main.appendChild(botonAgregarEvento);
 

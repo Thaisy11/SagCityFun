@@ -68,8 +68,6 @@ btnpagar.addEventListener('click', function (e) {
             break;
     }
 
-
-
 });
 
 function realizarPeticiones(enviarPrecio) {

@@ -94,7 +94,7 @@ function realizarPeticiones(enviarPrecio) {
             sessionStorage.setItem('pagoCompletado', 'true');
 
             console.log(pago.id);
-            window.history.back();
+            window.location.href ="/SaguntoCityFun/nuevoEvento"
         })
         .catch(error => {
             console.error(error);

@@ -10,6 +10,7 @@ let link = document.getElementById('link');
 let posicionamiento = document.getElementById('posicionamiento');
 let idUsuario = sessionStorage.getItem("id");
 let idPago = sessionStorage.getItem("pago");
+let texto =document.getElementById("texto1");
 
 let contenido = document.querySelector(".avisos");
 var correcto;
@@ -17,7 +18,25 @@ var correcto;
 let elementos = [nom, local, fecha, hora, precio];
 
 function cargarPAG() {
-    cargarPosicionamiento();
+    console.log(sessionStorage.getItem("pagoCompletado"));
+    if (sessionStorage.getItem("pagoCompletado") === 'true'){
+
+        nom.value = sessionStorage.getItem("nom");
+        local.value = sessionStorage.getItem("local");
+        fecha.value = sessionStorage.getItem("fecha");
+        hora.value = sessionStorage.getItem("hora");
+        precio.value = sessionStorage.getItem("precio");
+        link.value = sessionStorage.getItem("link");
+        console.log(nom + local + fecha + hora + link);
+
+        texto.textContent = "Este evento estará entre los 10 primeros";
+        posicionamiento.style.display= 'none';
+
+
+    }else{
+        cargarPosicionamiento();
+
+    }
 }
 
 btnevento.addEventListener('click', function (e) {
@@ -123,6 +142,13 @@ function cargarDatosPosicionamiento(conteo) {
         pago.textContent = "Ir al pago";
         pago.addEventListener('click', function (e) {
             e.preventDefault();
+            sessionStorage.setItem("nom", nom.value);
+            sessionStorage.setItem("local", local.value);
+            sessionStorage.setItem("fecha", fecha.value);
+            sessionStorage.setItem("hora", hora.value);
+            sessionStorage.setItem("precio", precio.value);
+            sessionStorage.setItem("link", link.value);
+
             window.location.href = "/SaguntoCityFun/pago";
         });
 

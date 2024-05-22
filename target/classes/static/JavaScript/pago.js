@@ -55,6 +55,9 @@ btnpagar.addEventListener('click', function (e) {
         case !(correcto = validaCcv(ccv.value)):
             ccv.focus();
             break;
+        case !(correcto = validaCaduFecha(cadmes.value, cadanyo.value)):
+
+            break;
         case !(correcto = validarCampos(elementos)):
 
             break;
@@ -67,8 +70,6 @@ btnpagar.addEventListener('click', function (e) {
             realizarPeticiones(enviarPrecio);
             break;
     }
-
-
 
 });
 
@@ -123,7 +124,7 @@ function validaTarjeta(num) {
 
 
 function validaCaduMes(cadmes) {
-    var nomexpreg = /^(1[0-2]|[1-9])$/;
+    var nomexpreg = /^(0[1-9]|1[0-2])$/;
     if (!nomexpreg.test(cadmes)) {
         contenido.innerHTML = "";
         contenido.innerHTML += "Debe introducir un mes válido";
@@ -143,7 +144,7 @@ function validaCcv(ccv) {
 }
 
 function validaCaduAnyo(cadanyo) {
-    var nomexpreg = /^(202[4-9]|203[0-5])$/;
+    var nomexpreg = /^(2[4-9]|3[0-5])$/;
     if (!nomexpreg.test(cadanyo)) {
         contenido.innerHTML = "";
         contenido.innerHTML += "Debe introducir un año válido";
@@ -151,6 +152,24 @@ function validaCaduAnyo(cadanyo) {
     }
     return true;
 }
+function validaCaduFecha(cadmes, cadanyo) {
+    if (!validaCaduAnyo(cadanyo)) {
+        return false;
+    }
+    if (!validaCaduMes(cadmes)) {
+        return false;
+    }
+
+
+    if (cadanyo === "24" && parseInt(cadmes, 10) < 6) {
+        contenido.innerHTML = "";
+        contenido.innerHTML += "Para el año 2024, el mes no puede ser menor que el mes actual";
+        return false;
+    }
+
+    return true;
+}
+
 
 function validarCampos(elementos) {
     for (let campo of elementos) {

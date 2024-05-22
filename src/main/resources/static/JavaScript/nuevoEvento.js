@@ -11,7 +11,7 @@ let posicionamiento = document.getElementById('posicionamiento');
 let idUsuario = sessionStorage.getItem("id");
 let idPago = sessionStorage.getItem("pago");
 let texto =document.getElementById("texto1");
-
+let btnpago = document.getElementById("btnpago");
 let contenido = document.querySelector(".avisos");
 var correcto;
 
@@ -27,13 +27,21 @@ function cargarPAG() {
         hora.value = sessionStorage.getItem("hora");
         precio.value = sessionStorage.getItem("precio");
         link.value = sessionStorage.getItem("link");
-        console.log(nom + local + fecha + hora + link);
+        console.log(local);
+        console.log(fecha);
+        console.log(hora);
+        console.log(precio);
+        console.log(link);
 
-        texto.textContent = "Este evento estará entre los 10 primeros";
+        sessionStorage.removeItem("pagoCompletado");
+
+        texto.textContent = "Este evento estará posicionado entre los 10 primeros";
         posicionamiento.style.display= 'none';
 
 
     }else{
+        console.log(nom + local + fecha + hora + precio + link);
+
         cargarPosicionamiento();
 
     }
@@ -43,10 +51,6 @@ btnevento.addEventListener('click', function (e) {
     e.preventDefault();
 
     switch (true) {
-        case !(correcto = validaNombre(nom.value)):
-            console.log(nom.value);
-            nom.focus();
-            break;
 
         case !(correcto = validarCampos(elementos)):
             break;
@@ -117,9 +121,9 @@ function cargarDatosPosicionamiento(conteo) {
     if (conteo <= 3) {
         options = [2.99];
     } else if (conteo >= 4 && conteo <= 6) {
-        options = [2.99, 6.99];
+        options = [6.99];
     } else if (conteo >= 7) {
-        options = [2.99, 6.99, 12.99];
+        options = [12.99];
     } else {
         options = ["Sin datos"];
     }
@@ -136,11 +140,8 @@ function cargarDatosPosicionamiento(conteo) {
         console.log("Precio seleccionado:", seleccion.textContent);
         sessionStorage.setItem("seleccion", seleccion.textContent);
 
-        // Crear un nuevo botón "Ir al pago"
-        const pago = document.createElement("button");
-        pago.id = "btnpago";
-        pago.textContent = "Ir al pago";
-        pago.addEventListener('click', function (e) {
+        btnpago.style.display="block";
+        btnpago.addEventListener('click', function (e) {
             e.preventDefault();
             sessionStorage.setItem("nom", nom.value);
             sessionStorage.setItem("local", local.value);

@@ -346,9 +346,9 @@ article {
     opacity: 0.7;
     width: 80%;
     height: auto;
-    min-height: 80px;
+    min-height: 100px;
     border-radius: 15px;
-    margin: auto;
+    margin: 0 auto;
 
 
 

@@ -42,6 +42,6 @@ public interface SolicitudesRepository extends JpaRepository<SolicitudesEntity, 
             "WHERE p.posicionamiento > 10")
     public int contarSolicitudesPrecioPosicionamiento3();
 
-    @Query("SELECT COUNT(s) FROM SolicitudesEntity s JOIN PagoEntity p ON s.idpago = p.id WHERE s.dia = :fecha AND p.posicionamiento > 0 order by p.posicionamiento desc" )
+    @Query("SELECT COUNT(s) FROM SolicitudesEntity s JOIN PagoEntity p ON s.idpago = p.id WHERE s.dia = :fecha AND p.posicionamiento > 0 AND s.idestado = 1 OR s.idestado = 2 order by p.posicionamiento desc" )
     int contarSolicitudesPrecioPosicionamientoPorFecha(@Param("fecha") LocalDate fecha);
 }

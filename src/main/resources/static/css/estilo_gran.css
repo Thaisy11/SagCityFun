@@ -1,18 +1,20 @@
 @media (min-width: 800px) {
   body {
-    min-height: auto;
     background-color: #ffffff;
-    grid-template-rows: 2fr 1fr auto 0.5fr;
     background-image: none;
     text-align: center;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   header {
     background-image: url("../images/fondo.jpg");
     background-size: cover;
     background-position: 0% 25%;
-    grid-area: header;
     justify-content: center;
+    height: 400px;
   }
 
   header div:nth-of-type(1) {
@@ -84,11 +86,6 @@ p{
 
   }
 
-  body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
 
 
   h2,

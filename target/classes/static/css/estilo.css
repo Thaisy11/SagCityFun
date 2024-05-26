@@ -15,7 +15,7 @@ h5,
 h6,
 a, label {
     color: white;
-    font-family: Comfortaa;
+    font-family: Roboto;
     text-decoration: none;
 }
 
@@ -360,7 +360,7 @@ article {
     color: white;
     border: none;
     border-radius: 0px;
-    font-family: Comfortaa;
+    font-family: Roboto;
     margin-right: 10px;
     margin-bottom: 5px;
 
@@ -371,7 +371,7 @@ article {
     color: white;
     border: none;
     border-radius: 0px;
-    font-family: Comfortaa;
+    font-family: Roboto;
     margin-left: 10px;
     margin-bottom: 5px;
 
@@ -388,7 +388,7 @@ article {
 }
 
 .swal2-popup {
-    font-family: Comfortaa;
+    font-family: Roboto;
     border-radius: 15px;
     box-shadow: 0 4px 8px #3C3C3C;
 }
@@ -396,7 +396,7 @@ article {
 .swal2-title {
     color: #743DB2;
     font-size: 15px ;
-    font-family: Comfortaa;
+    font-family: Roboto;
 }
 #nombreUsuario{
     color: #36BB70;

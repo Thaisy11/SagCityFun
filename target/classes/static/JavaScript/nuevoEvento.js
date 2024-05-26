@@ -221,10 +221,22 @@ function realizarPeticiones(registro) {
         })
         .then(RegNuevo => {
             console.log('Evento:', RegNuevo);
-            window.location.href = "/SaguntoCityFun/eventos";
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Su solicitud ha sido enviada correctamente",
+                showConfirmButton: true
+            }).then(() => {
+                window.location.href = "/SaguntoCityFun/eventos";
+            });
         })
         .catch(error => {
             console.error(error);
-            alert("Error en el registro de su solicitud. Por favor, inténtelo de nuevo.");
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Error en la creación del evento",
+                showConfirmButton: true
+            });
         });
 }

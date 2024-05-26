@@ -94,11 +94,23 @@ function realizarPeticiones(enviarPrecio) {
             sessionStorage.setItem('pagoCompletado', 'true');
 
             console.log(pago.id);
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "El pago se ha realizado con éxito",
+                showConfirmButton: true
+            }).then(() => {
             window.location.href ="/SaguntoCityFun/nuevoEvento"
+            });
         })
         .catch(error => {
             console.error(error);
-            alert("Error en el Registro. Por favor, inténtelo de nuevo.");
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Error en el pago. Inténtalo de nuevo",
+                showConfirmButton: true
+            });
         });
 }
 

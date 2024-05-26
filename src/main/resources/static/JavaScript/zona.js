@@ -40,7 +40,12 @@ function cargarUsuario() {
             })
             .catch(error => {
                 console.error(error);
-                alert("Error al cargar el jusuario. Por favor, inténtelo de nuevo.");
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Error al cargar los datos de usuario",
+                    showConfirmButton: true
+                });
             });
 
 }
@@ -184,15 +189,24 @@ function realizarPeticiones(registro) {
         })
         .then(RegUsuario => {
             console.log('Usuario:', RegUsuario);
-
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Datos cambiados correctamente",
+                showConfirmButton: true
+            }).then(() => {
             window.location.href = "/SaguntoCityFun/eventos";
-
+            });
 
         })
         .catch(error => {
             console.error(error);
-            alert("Error en la actualizacion. Por favor, inténtelo de nuevo.");
-        });
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Error en la actualización",
+                showConfirmButton: true
+            });        });
 
 
 }

@@ -13,7 +13,7 @@ h3 {
 h4,
 h5,
 h6,
-a , label{
+a, label {
     color: white;
     font-family: Comfortaa;
     text-decoration: none;
@@ -25,10 +25,12 @@ h1 {
     letter-spacing: 11px;
 
 }
-article h2, h5, p{
+
+article h2, h5, p {
     color: white;
     margin: 10px;
 }
+
 .avisos {
     margin-top: 40px;
     height: 20px;
@@ -80,17 +82,9 @@ primary-5 {
 * {
     box-sizing: border-box;
     object-fit: cover;
-
-
-    #nombreUsuario {
-        color: #36BB70;
-        font-size: 15px;
-        font-family: Roboto;
-        margin-top: 15px;
-
-
-    }
 }
+
+
 
 #inicio {
     background-image: url("../images/fondo.jpg");
@@ -221,6 +215,7 @@ form {
     margin: 10px;
 
 }
+
 .caducidad {
     display: flex;
 }
@@ -229,6 +224,7 @@ form {
     width: 40%; /* Cada input ocupa la mitad del espacio */
     margin: 10px; /* Ajusta el margen entre los campos */
 }
+
 form section {
     margin-left: 60%; /* Ajusta el margen del section para centrarlo */
 }
@@ -351,19 +347,20 @@ article {
     margin: 0 auto;
 
 
-
 }
-.sinEventos{
+
+.sinEventos {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .boton-confirmar {
     background-color: #36BB70;
     color: white;
     border: none;
     border-radius: 0px;
-font-family: Comfortaa;
+    font-family: Comfortaa;
     margin-right: 10px;
     margin-bottom: 5px;
 
@@ -375,10 +372,11 @@ font-family: Comfortaa;
     border: none;
     border-radius: 0px;
     font-family: Comfortaa;
-margin-left: 10px;
+    margin-left: 10px;
     margin-bottom: 5px;
 
 }
+
 /* flechas */
 
 .flecha_dxa, .flecha_izd {
@@ -397,4 +395,11 @@ margin-left: 10px;
 
 .swal2-title {
     color: #743DB2;
+    font-size: 15px ;
+    font-family: Comfortaa;
+}
+#nombreUsuario{
+    color: #36BB70;
+    margin-top: 8px;
+
 }

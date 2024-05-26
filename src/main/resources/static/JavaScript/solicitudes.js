@@ -86,8 +86,7 @@ function realizarPeticionesActivas() {
 }
 function mostrarEventos(datosJSON) {
     console.log(datosJSON);
-    const inicio = (paginaActual - 1) * articulosPorPagina;
-    const fin = inicio + articulosPorPagina;
+
 
     const fechaSeleccionadaString = fechaSeleccionada.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 

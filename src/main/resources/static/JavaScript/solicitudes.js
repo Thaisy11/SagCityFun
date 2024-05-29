@@ -24,7 +24,7 @@ function cargarPAG() {
 
 // CARGAR ARTÍCULOS DE LA TIENDA
 async function cargarSolicitudes() {
-   await realizarPeticionesActivas();
+    await realizarPeticionesActivas();
 
 }
 
@@ -123,7 +123,7 @@ function mostrarEventos(datosJSON) {
         }
     }
 
-    mostrarBotonAgregarEvento(); // Llamada aquí
+
 }
 
 function mostrarBotonAgregarEvento() {
@@ -164,5 +164,6 @@ function muestraUsuario() {
     if (usuario) {
         muestraUsuari.textContent = usuario + ", elije tu próximo plan";
         console.log(usuario);
+        mostrarBotonAgregarEvento(); // Llamada aquí
     }
 }

@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', cargarPAG);
 
 let fechaSeleccionada = new Date();
+let inicio=0;
+
 
 
 // CUANDO SE CARGA EL DOM
@@ -113,7 +115,7 @@ function mostrarEventos(datosJSON) {
         let divSinEventos = crearElemento('article', main);
         crearElementoTexto("No hay eventos en esta fecha", 'h2', divSinEventos);
     } else {
-        for (let i = inicio; i < fin && i < eventosDeHoy.length; i++) {
+         for (let i = 0; i < eventosDeHoy.length; i++) {
             let divEvento = crearElemento('article', main);
             crearElementoTexto(eventosDeHoy[i].nombreevento, 'h2', divEvento);
             crearElementoTextoAdicional(eventosDeHoy[i].local, "Local del evento: ", 'h4', divEvento);

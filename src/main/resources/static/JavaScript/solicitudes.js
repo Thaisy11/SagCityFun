@@ -153,21 +153,7 @@ function ocultarMiZona() {
     }
 }
 
-function mostrarBotonSiguiente() {
-    let botonSiguiente = crearElementoTexto('Página siguiente', 'button', document.querySelector('main'));
-    botonSiguiente.addEventListener('click', function () {
-        paginaActual++;
-        cargarSolicitudes();
-    });
-}
 
-function mostrarBotonAnterior() {
-    let botonAnterior = crearElementoTexto('Página anterior', 'button', document.querySelector('main'));
-    botonAnterior.addEventListener('click', function () {
-        paginaActual--;
-        cargarSolicitudes();
-    });
-}
 
 function muestraUsuario() {
     const usuario = sessionStorage.getItem("nombre");

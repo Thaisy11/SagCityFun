@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class IndexController {
 
+    @GetMapping("/sinacceso")
+    public String sinacceso(Model model) {
+        return "sinacceso";
+    }
+
 
     @GetMapping("/")
     public String mostrarIndex(Model model) {

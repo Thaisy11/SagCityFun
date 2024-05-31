@@ -1,22 +1,28 @@
 document.addEventListener('DOMContentLoaded', cargarPAG);
 
 let fechaSeleccionada = new Date();
+let admin = sessionStorage.getItem("rol") ;
 
 
 // CUANDO SE CARGA EL DOM
 function cargarPAG() {
-    funcionFecha();
-    cargarSolicitudes();
-    const flechaIzquierda = document.querySelector('.flecha-izqMo');
-    const flechaDerecha = document.querySelector('.flecha-dxaMO');
-    const flechaIzquierdaP = document.querySelector('.flecha_izd');
-    const flechaDerechaP = document.querySelector('.flecha_dxa');
+    if (admin === "A"){
+        funcionFecha();
+        cargarSolicitudes();
+        const flechaIzquierda = document.querySelector('.flecha-izqMo');
+        const flechaDerecha = document.querySelector('.flecha-dxaMO');
+        const flechaIzquierdaP = document.querySelector('.flecha_izd');
+        const flechaDerechaP = document.querySelector('.flecha_dxa');
 
-    // FLECHAS FECHA
-    flechaIzquierda.addEventListener('click', retrocederDia);
-    flechaDerecha.addEventListener('click', avanzarDia);
-    flechaIzquierdaP.addEventListener('click', avanzarDia);
-    flechaDerechaP.addEventListener('click', retrocederDia);
+        // FLECHAS FECHA
+        flechaIzquierda.addEventListener('click', retrocederDia);
+        flechaDerecha.addEventListener('click', avanzarDia);
+        flechaIzquierdaP.addEventListener('click', avanzarDia);
+        flechaDerechaP.addEventListener('click', retrocederDia);
+    }
+    else{
+        window.location.href ="sinacceso";
+    }
 
 
 
@@ -122,7 +128,7 @@ function mostrarEventos(datosJSON) {
 
         crearElementoTexto("No hay eventos en esta fecha", 'h2', divSinEventos);
     } else {
-        for (let i = inicio; i < fin && i < eventosDeHoy.length; i++) {
+        for (let i = 0; i < eventosDeHoy.length; i++) {
             let divEvento = crearElemento('article', main);
             crearElementoTexto(eventosDeHoy[i].nombreevento, 'h2', divEvento);
             crearElementoTextoAdicional(eventosDeHoy[i].local, "Local del evento: ", 'h4', divEvento);

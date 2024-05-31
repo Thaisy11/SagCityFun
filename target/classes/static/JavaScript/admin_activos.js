@@ -1,36 +1,39 @@
 document.addEventListener('DOMContentLoaded', cargarPAG);
-// VARIABLES PARA LA PAGINACIÓN
-let paginaActual = 1;
-const articulosPorPagina = 4;
+
 let fechaSeleccionada = new Date();
+let admin = sessionStorage.getItem("rol") ;
 
 
 // CUANDO SE CARGA EL DOM
 function cargarPAG() {
-    funcionFecha();
-    cargarSolicitudes();
-    const flechaIzquierda = document.querySelector('.flecha-izqMo'); // Flecha izquierda para dispositivos móviles
-    const flechaDerecha = document.querySelector('.flecha-dxaMO'); // Flecha derecha para dispositivos móviles
-    const flechaIzquierdaP = document.querySelector('.flecha_izd'); // Flecha izquierda para dispositivos grandes
-    const flechaDerechaP = document.querySelector('.flecha_dxa'); // Flecha derecha para dispositivos grandes
+    if (admin === "A"){
+        funcionFecha();
+        cargarSolicitudes();
+        const flechaIzquierda = document.querySelector('.flecha-izqMo');
+        const flechaDerecha = document.querySelector('.flecha-dxaMO');
+        const flechaIzquierdaP = document.querySelector('.flecha_izd');
+        const flechaDerechaP = document.querySelector('.flecha_dxa');
 
-    // Agrega event listeners a las flechas para dispositivos móviles
-    flechaIzquierda.addEventListener('click', retrocederDia);
-    flechaDerecha.addEventListener('click', avanzarDia);
-
-    // Agrega event listeners a las flechas para dispositivos grandes
-    flechaIzquierdaP.addEventListener('click', avanzarDia);
-    flechaDerechaP.addEventListener('click', retrocederDia);
+        // FLECHAS FECHA
+        flechaIzquierda.addEventListener('click', retrocederDia);
+        flechaDerecha.addEventListener('click', avanzarDia);
+        flechaIzquierdaP.addEventListener('click', avanzarDia);
+        flechaDerechaP.addEventListener('click', retrocederDia);
+    }
+    else{
+        window.location.href ="sinacceso";
+    }
 
 
 
 }
 
-// CARGAR ARTÍCULOS DE LA TIENDA
+// CARGAR ACTIVOS
 async function cargarSolicitudes() {
     await realizarPeticionesActivas();
 
 }
+//FUNCIONES DE FECHA ATRAS Y ALANTE
 
 function obtenerFechaFormateada(fecha) {
     let dia = fecha.getDate();
@@ -51,21 +54,22 @@ function funcionFecha() {
 function retrocederDia() {
     const fechaActual = new Date();
     const fechaMinima = new Date(fechaActual);
-    fechaMinima.setDate(fechaActual.getDate() ); // Fecha mínima es el día actual menos 1 día
+    fechaMinima.setDate(fechaActual.getDate() );
 
-    if (fechaSeleccionada > fechaMinima) { // Verifica si la fecha seleccionada es posterior a la fecha mínima
-        fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1); // Resta un día a la fecha seleccionada
+    if (fechaSeleccionada > fechaMinima) {
+        fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
         funcionFecha();
         cargarSolicitudes();
     }
 }
 
 function avanzarDia() {
-    fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1); // Suma un día a la fecha seleccionada
+    fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1);
     funcionFecha();
     cargarSolicitudes();
 }
 
+//PETICION
 
 function realizarPeticionesActivas() {
     let url = '/SaguntoCityFun/solicitudes/activas';
@@ -92,10 +96,10 @@ function realizarPeticionesActivas() {
             alert("Error en la carga de eventos. Por favor, inténtelo de nuevo.");
         });
 }
+
+//MOSTRAR LOS EVENTOS
 function mostrarEventos(datosJSON) {
     console.log(datosJSON);
-    const inicio = (paginaActual - 1) * articulosPorPagina;
-    const fin = inicio + articulosPorPagina;
 
     const fechaSeleccionadaString = fechaSeleccionada.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
@@ -124,7 +128,7 @@ function mostrarEventos(datosJSON) {
 
         crearElementoTexto("No hay eventos en esta fecha", 'h2', divSinEventos);
     } else {
-        for (let i = inicio; i < fin && i < eventosDeHoy.length; i++) {
+        for (let i = 0; i < eventosDeHoy.length; i++) {
             let divEvento = crearElemento('article', main);
             crearElementoTexto(eventosDeHoy[i].nombreevento, 'h2', divEvento);
             crearElementoTextoAdicional(eventosDeHoy[i].local, "Local del evento: ", 'h4', divEvento);

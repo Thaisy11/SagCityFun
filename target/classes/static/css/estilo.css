@@ -241,7 +241,7 @@ header {
 }
 
 header div:nth-of-type(1) {
-    width: calc(43% - 34px);
+    width: calc(43% - 60px);
 
 
 }
@@ -306,7 +306,7 @@ nav a {
 
 
 main {
-    height: 100%;
+min-height: 600px;
     grid-area: main;
     align-items: center;
     justify-content: center;

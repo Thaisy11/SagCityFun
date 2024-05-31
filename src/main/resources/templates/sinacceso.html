@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>HTML</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/estilo.css}" />
+  <link rel="stylesheet" th:href="@{/css/estilo_gran.css}" />
+  <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Roboto}" />
+  <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Wallpoet}" />
+  <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.11.0/sweetalert2.min.css}"  />
+
+</head>
+
+<body>
+  <header>
+    <div>
+      <a th:href="@{/}">
+          <img th:src="@{/images/flecha.png}" alt="icono_volver">
+      </a>
+  </div>
+    <div>
+      <img th:src="@{/images/logo.png}" alt="logo">
+    </div>
+    <section id="tit">
+      <h1>VIVE EL OCIO NOCTURNO</h1>
+
+    </section>
+  </header>
+  <nav>
+
+
+  </nav>
+
+  <main>
+    <section>
+      <h2>NO TIENES ACCESO A ESTÁ PÁGINA</h2>
+    </section>
+
+
+    <script th:src="@{/javaScript/base.js}"></script>
+    <script th:src="@{/JavaScript/login.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js}"></script>
+
+  </main>
+  <footer>
+    <div>
+      <img th:src="@{/images/CopyR.png}" alt="copyR">
+    </div>
+    <div><p>SaguntoCityFun de CityFun S.L.</p></div>
+    <div>
+      <img th:src="@{/images/insta.png}" alt="insta">
+    </div>
+  </footer>
+
+
+</body>
+
+</html>

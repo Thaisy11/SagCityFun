@@ -7,6 +7,7 @@ let idpago = sessionStorage.getItem("pago");
 
 // CUANDO SE CARGA EL DOM
 function cargarPAG() {
+    if (admin === "A"){
     funcionFecha();
     cargarSolicitudes();
     const flechaIzquierda = document.querySelector('.flecha-izqMo');
@@ -19,6 +20,10 @@ function cargarPAG() {
     flechaDerecha.addEventListener('click', avanzarDia);
     flechaIzquierdaP.addEventListener('click', avanzarDia);
     flechaDerechaP.addEventListener('click', retrocederDia);
+    }
+    else{
+        window.location.href ="sinacceso";
+    }
 }
 
 // CARGAR

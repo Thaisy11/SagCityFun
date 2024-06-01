@@ -124,6 +124,8 @@ function mostrarEventos(datosJSON) {
             crearElementoTexto(eventosDeHoy[i].link, 'p', divEvento);
         }
     }
+    mostrarBotonAgregarEvento(); // Llamada aquí
+
 
 
 }
@@ -166,6 +168,5 @@ function muestraUsuario() {
     if (usuario) {
         muestraUsuari.textContent = usuario + ", elije tu próximo plan";
         console.log(usuario);
-        mostrarBotonAgregarEvento(); // Llamada aquí
     }
 }

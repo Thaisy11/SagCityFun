@@ -5,6 +5,7 @@ let fechaSeleccionada = new Date();
 
 // CUANDO SE CARGA EL DOM
 function cargarPAG() {
+    if (admin === "A"){
     funcionFecha();
     cargarSolicitudes();
     const flechaIzquierda = document.querySelector('.flecha-izqMo');
@@ -13,12 +14,15 @@ function cargarPAG() {
     const flechaDerechaP = document.querySelector('.flecha_dxa');
 
 
-    flechaIzquierda.addEventListener('click', retrocederDia);
-    flechaDerecha.addEventListener('click', avanzarDia);
-    flechaIzquierdaP.addEventListener('click', retrocederDia);
-    flechaDerechaP.addEventListener('click', avanzarDia);
+        flechaIzquierda.addEventListener('click', retrocederDia);
+        flechaDerecha.addEventListener('click', avanzarDia);
+        flechaIzquierdaP.addEventListener('click', avanzarDia);
+        flechaDerechaP.addEventListener('click', retrocederDia);
 
-
+    }
+    else{
+        window.location.href ="sinacceso";
+    }
 
 }
 

@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', cargarPAG);
 
-// VARIABLES PARA LA PAGINACIÓN
-let paginaActual = 1;
-const articulosPorPagina = 4;
 let fechaSeleccionada = new Date();
 let btnconfirmar;
 let btnrechazar;
@@ -10,25 +7,28 @@ let idpago = sessionStorage.getItem("pago");
 
 // CUANDO SE CARGA EL DOM
 function cargarPAG() {
+    if (admin === "A"){
     funcionFecha();
     cargarSolicitudes();
-    const flechaIzquierda = document.querySelector('.flecha-izqMo'); // Flecha izquierda para dispositivos móviles
-    const flechaDerecha = document.querySelector('.flecha-dxaMO'); // Flecha derecha para dispositivos móviles
-    const flechaIzquierdaP = document.querySelector('.flecha_izd'); // Flecha izquierda para dispositivos grandes
-    const flechaDerechaP = document.querySelector('.flecha_dxa'); // Flecha derecha para dispositivos grandes
+    const flechaIzquierda = document.querySelector('.flecha-izqMo');
+    const flechaDerecha = document.querySelector('.flecha-dxaMO');
+    const flechaIzquierdaP = document.querySelector('.flecha_izd');
+    const flechaDerechaP = document.querySelector('.flecha_dxa');
 
-    // Agrega event listeners a las flechas para dispositivos móviles
+
     flechaIzquierda.addEventListener('click', retrocederDia);
     flechaDerecha.addEventListener('click', avanzarDia);
-
-    // Agrega event listeners a las flechas para dispositivos grandes
     flechaIzquierdaP.addEventListener('click', avanzarDia);
     flechaDerechaP.addEventListener('click', retrocederDia);
+    }
+    else{
+        window.location.href ="sinacceso";
+    }
 }
 
-// CARGAR ARTÍCULOS DE LA TIENDA
+// CARGAR
 async function cargarSolicitudes() {
-    await realizarPeticionesActivas();
+    await realizarPeticionesPendientes();
 }
 
 function obtenerFechaFormateada(fecha) {
@@ -59,7 +59,7 @@ function avanzarDia() {
     cargarSolicitudes();
 }
 
-function realizarPeticionesActivas() {
+function realizarPeticionesPendientes() {
     let url = '/SaguntoCityFun/solicitudes/pendientes';
     console.log("a punto de hacer el fetch");
 
@@ -101,12 +101,12 @@ function mostrarEventos(datosJSON) {
     const articlesAnteriores = main.querySelectorAll('article');
     const botonAnterior = document.getElementById('anadir');
 
-    // Eliminar artículos anteriores
+
     articlesAnteriores.forEach(article => {
         main.removeChild(article);
     });
 
-    // Eliminar botón anterior si existe
+
     if (botonAnterior) {
         main.removeChild(botonAnterior);
     }
@@ -129,34 +129,35 @@ function mostrarEventos(datosJSON) {
             btnconfirmar.classList.add('boton-confirmar');
 
             btnconfirmar.addEventListener('click', function() {
-                const idSolicitud = eventosDeHoy[i].id; // Obtener el ID de la solicitud
-                realizarPeticionesAprobar(idSolicitud); // Llamar a la función para aprobar la solicitud
+                const idSolicitud = eventosDeHoy[i].id;
+                realizarPeticionesAprobar(idSolicitud);
             });
 
             btnrechazar.addEventListener('click', function() {
-                const idSolicitud = eventosDeHoy[i].id; // Obtener el ID de la solicitud
-                realizarPeticionesRechazar(idSolicitud); // Llamar a la función para rechazar la solicitud
+                const idSolicitud = eventosDeHoy[i].id;
+                realizarPeticionesRechazar(idSolicitud);
             });
         }
     }
 }
 
 function realizarPeticionesAprobar(idSolicitud) {
-    const url = `/SaguntoCityFun/solicitudes/aprobar/${idSolicitud}`; // URL para la actualización de la solicitud
+    const url = `/SaguntoCityFun/solicitudes/aprobar/${idSolicitud}`;
+
+
     console.log("el id de la solicitud es: " + idSolicitud);
     fetch(url, {
         method: 'PUT', // Método PUT para actualizar la solicitud
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ idestado: 2 }) // Enviar el nuevo estado de la solicitud
+        body: JSON.stringify({ idestado: 2 })
     })
         .then(response => {
             cargarPAG();
             if (!response.ok) {
                 throw new Error(`Error al aprobar la solicitud. Estado: ${response.status}`);
             }
-            // Aquí puedes actualizar la interfaz de usuario si es necesario
         })
         .catch(error => {
             console.error(error);
@@ -165,21 +166,20 @@ function realizarPeticionesAprobar(idSolicitud) {
 }
 
 function realizarPeticionesRechazar(idSolicitud) {
-    const url = `/SaguntoCityFun/solicitudes/aprobar/${idSolicitud}`; // URL para la actualización de la solicitud
+    const url = `/SaguntoCityFun/solicitudes/aprobar/${idSolicitud}`;
     console.log("el id de la solicitud es: " + idSolicitud);
     fetch(url, {
         method: 'PUT', // Método PUT para actualizar la solicitud
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ idestado: 3 }) // Enviar el nuevo estado de la solicitud
+        body: JSON.stringify({ idestado: 3 })
     })
         .then(response => {
             cargarPAG();
             if (!response.ok) {
                 throw new Error(`Error al rechazar la solicitud. Estado: ${response.status}`);
             }
-            // Aquí puedes actualizar la interfaz de usuario si es necesario
         })
         .catch(error => {
             console.error(error);

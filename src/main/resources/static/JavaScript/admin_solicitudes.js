@@ -4,6 +4,8 @@ let fechaSeleccionada = new Date();
 let btnconfirmar;
 let btnrechazar;
 let idpago = sessionStorage.getItem("pago");
+let admin = sessionStorage.getItem("rol") ;
+
 
 // CUANDO SE CARGA EL DOM
 function cargarPAG() {

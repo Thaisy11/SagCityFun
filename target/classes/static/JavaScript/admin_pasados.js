@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', cargarPAG);
 let fechaSeleccionada = new Date();
+let admin = sessionStorage.getItem("rol") ;
+
 
 
 // CUANDO SE CARGA EL DOM

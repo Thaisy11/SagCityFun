@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class IndexController {
 
+    @GetMapping("/sinacceso")
+    public String sinacceso(Model model) {
+        return "sinacceso";
+    }
+
 
     @GetMapping("/SaguntoCityFun")
     public String mostrarIndex(Model model) {
@@ -55,11 +60,16 @@ public class IndexController {
     public String admin_activos() {
         return "admin_activos";
     }
-    
+    @GetMapping("/zona")
+    public String zona() {
+        return "zona";
+    }
 
 
 
 
 
-    
+
+
+
 }

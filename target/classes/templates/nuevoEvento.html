@@ -3,13 +3,14 @@
 
 <head>
   <meta charset="utf-8">
-  <title>HTML</title>
+  <title>Sagunto City Fun</title>
+  <link rel="icon" sizes="16x16 32x32 48x48" type="image/png" th:href="@{/images/favicon.png}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" th:href="@{/css/estilo.css}" />
   <link rel="stylesheet" th:href="@{/css/estilo_gran.css}" />
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Roboto}" />
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css2?family=Wallpoet}" />
-  
+  <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.11.0/sweetalert2.min.css}"  />
 </head>
 
 <body>
@@ -30,7 +31,7 @@
 
   <nav>
 
-    <a th:href="@{home}">PÁGINA PRINCIPAL</a>
+    <a th:href="@{/}">PÁGINA PRINCIPAL</a>
     <a th:href="@{eventos}">EVENTOS</a>
     <a th:href="@{login}">LOGIN</a>
     <a th:href="@{registro}">REGISTRO</a>
@@ -42,19 +43,18 @@
     </section>
     <form id="nuevoEvento"  method="post">
 
-      <input type="text" id="nombre" placeholder="NOMBRE DEL EVENTO" name="nombre del evento" >
+      <input type="text" id="nom" placeholder="NOMBRE DEL EVENTO" name="nombre del evento" >
       <input type="text" id="local" placeholder="LOCAL DEL EVENTO" name="local del evento">
       <input type="date" id="fecha" placeholder="DÍA DEL EVENTO" name="fecha del evento">
       <input type="time" id="hora" placeholder="HORA DEL EVENTO" name="hora del evento">
-      <input type="number" id="precio" placeholder="PRECIO DE LA ENTRADA" name="precio de la entrada">
+      <input type="number" id="precio" placeholder="PRECIO DE LA ENTRADA" name="precio de la entrada" min="0">
       <input type="text" id="link" placeholder="LINK A RRSS" >
+      <label for="posicionamiento" id="texto1">Si quieres estar entre los primeros...</label>
       <select id="posicionamiento" name="posicionamiento">
-        <option value="0">Precio Posicionamiento</option>
-        <option value="2.99">2.99</option>
-        <option value="6.99">6.99</option>
-        <option value="12.99">12.99</option>
+        <option value="0">No pagar posicionamiento</option>
       </select>
 
+      <button type="submit" id="btnpago" style="display: none;">IR AL PAGO</button>
 
 
       <button type="submit" id="btnevento">AÑADIR EVENTO</button>
@@ -63,6 +63,8 @@
 
     <script th:src="@{/javaScript/base.js}"></script>
     <script th:src="@{/JavaScript/nuevoEvento.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js}"></script>
+
   </main>
   <footer>
     <div>

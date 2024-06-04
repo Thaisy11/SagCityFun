@@ -7,8 +7,7 @@ let log_pass = document.getElementById("log_pass");
 //ZONA DE AVISO DE ERROR
 let contenido = document.querySelector(".avisos");
 
-// O si prefieres usar el ID en lugar de la clase
-// let contenido = document.getElementById("avisos");
+
 let correcto;
 
 //EVENTO SOBRE EL BOTON DEL LOGIN. VALIDACION Y CREACION FORMDATA
@@ -46,7 +45,7 @@ btnlog.addEventListener('click', function (e) {
 function campos_llenos(campo) {
     if (campo.value.trim() === "") {
         contenido.innerHTML = "";
-        contenido.innerHTML += "El campo " + campo.name + " no puede estar vacío";
+        contenido.innerHTML += "El" + campo.name + " no puede estar vacío";
         return false;
     }
     return true;
@@ -82,23 +81,33 @@ function realizarPeticiones(usuario) {
         })
         .then(usuarioOK => {
             console.log('Usuario:', usuarioOK);
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Inicio de sesión correcto",
+                showConfirmButton: true
+            }).then(() => {
+                sessionStorage.setItem("email", usuarioOK.email);
+                sessionStorage.setItem("contraUsuario", usuarioOK.contrasena);
+                sessionStorage.setItem("rol", usuarioOK.rol);
+                sessionStorage.setItem("nombre", usuarioOK.nombre);
+                sessionStorage.setItem("id", usuarioOK.id);
 
-
-            sessionStorage.setItem("email", usuarioOK.email);
-            sessionStorage.setItem("contraUsuario", usuarioOK.contrasena);
-            sessionStorage.setItem("rol", usuarioOK.rol);
-            sessionStorage.setItem("nombre", usuarioOK.nombre);
-            sessionStorage.setItem("id",usuarioOK.id);
-
-            if (usuarioOK.rol === "A") {
-                window.location.href = "/SaguntoCityFun/admin_activos";
-            } else if (usuarioOK.rol === "U") {
-                window.location.href = "/SaguntoCityFun/eventos";
-            }
+                if (usuarioOK.rol === "A") {
+                    window.location.href = "/SaguntoCityFun/admin_activos";
+                } else if (usuarioOK.rol === "U") {
+                    window.location.href = "/SaguntoCityFun/eventos";
+                }
+            });
         })
         .catch(error => {
             console.error(error);
-            alert("Error en el inicio de sesión. Por favor, inténtelo de nuevo.");
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Datos incorrectos. Prueba de nuevo",
+                showConfirmButton: true
+            });
         });
 }
 

@@ -20,21 +20,15 @@ btnreg.addEventListener('click', function (e) {
         case !(correcto = validaNombre(nom)):
             nom.focus();
             break;
-        /* case !(correcto = campos_llenos(mail)):
-             mail.focus();
-             break;          */
+
         case !(correcto = validaEmail(mail)):
             mail.focus();
             break;
-        /* case !(correcto = campos_llenos(pass)):
-             pass.focus();
-             break;     */
+
         case !(correcto = validaPass(pass)):
             pass.focus();
             break;
-        /*case !(correcto = campos_llenos(repass)):
-            repass.focus();
-            break;  */
+
         case !(correcto = passCoincida(pass, repass)):
             pass.focus();
             break;
@@ -109,7 +103,7 @@ function validaEmail(mail) {
 
 function passCoincida(pass, repass) {
     if (pass.value !== repass.value) {
-        contenido.innerHTML = ""; // Limpiar contenido del div avisos
+        contenido.innerHTML = "";
 
         contenido.innerHTML = "Las contraseñas deben coincidir";
         return false;
@@ -135,7 +129,7 @@ function validaPass(pass) {
 
 
 function realizarPeticiones(registro) {
-    contenido.innerHTML = ""; // Limpiar contenido del div avisos
+    contenido.innerHTML = "";
     console.log(registro);
     let url = '/SaguntoCityFun/u/registrar';
     fetch(url, {
@@ -154,8 +148,16 @@ function realizarPeticiones(registro) {
         })
         .then(RegUsuario => {
             console.log('Usuario:', RegUsuario);
-
             window.location.href = "/SaguntoCityFun/login";
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Usuario creado correctamente",
+                showConfirmButton: false,
+                timer: 5500
+            })
+
+
 
 
         })

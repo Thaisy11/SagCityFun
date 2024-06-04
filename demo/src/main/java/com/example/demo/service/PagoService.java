@@ -33,12 +33,12 @@ public class PagoService implements BaseService<PagoEntity> {
 
     @Override
     @Transactional
-
     public PagoEntity save(PagoEntity pago) {
         pago = pagorepository.save(pago);
         return pago;
        
     }
+
 
     @Override
     @Transactional

@@ -7,6 +7,7 @@ import com.example.demo.Repository.entity.UsuarioEntity;
 import com.example.demo.service.SolicitudesService;
 import com.example.demo.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,35 @@ public class SolicitudesController {
 
     @Autowired
     private SolicitudesRepository solicitudesRepository;
+
+    @PutMapping("/aprobar/{id}")
+    public ResponseEntity<Boolean> actualizarEvento(@PathVariable Long id, @RequestBody Map<String, Integer> updates) {
+        // Verificar si la solicitud con el ID dado existe en la base de datos
+        Optional<SolicitudesEntity> optionalSolicitud = solicitudesRepository.findById(id);
+
+        // Si no se encuentra la solicitud, devuelve una respuesta de error
+        if (!optionalSolicitud.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
+        }
+
+        // Obtener la entidad existente
+        SolicitudesEntity solicitudExistente = optionalSolicitud.get();
+
+        // Actualizar solo el campo idestado si está presente en los datos enviados
+        if (updates.containsKey("idestado")) {
+            solicitudExistente.setIdestado(Long.valueOf(updates.get("idestado")));
+        } else {
+            // Si no se proporciona el campo idestado, devolver false
+            return ResponseEntity.badRequest().body(false);
+        }
+
+        // Guardar la entidad actualizada
+        solicitudesRepository.save(solicitudExistente);
+
+        // Devolver true indicando que la actualización fue exitosa
+        return ResponseEntity.ok(true);
+    }
+
 
     @GetMapping("/activas")
     public List<SolicitudesEntity> activas() {
@@ -74,6 +104,7 @@ public class SolicitudesController {
     public int contarSolicitudesPrecioPosicionamientoPorFecha(@PathVariable String fecha) {
         return solicitudesService.contarSolicitudesPrecioPosicionamientoPorFecha(LocalDate.parse(fecha));
     }
+
 
 
 

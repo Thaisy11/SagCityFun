@@ -1,18 +1,19 @@
 @media (min-width: 800px) {
   body {
-    min-height: auto;
     background-color: #ffffff;
-    grid-template-rows: 2fr 1fr auto 0.5fr;
     background-image: none;
     text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   header {
     background-image: url("../images/fondo.jpg");
     background-size: cover;
     background-position: 0% 25%;
-    grid-area: header;
     justify-content: center;
+    height: 400px;
   }
 
   header div:nth-of-type(1) {
@@ -77,23 +78,18 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-height: 400px;
+    min-height: 450px;
 
 
   }
 
-  body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
 
 
   h2,
   h3,
   h4,
   h5,
-  h6 {
+  h6, label {
     color: #743DB2;
   }
 
@@ -113,7 +109,6 @@
 
   article {
     width: 60%;
-    height: 220px;
     margin-bottom: 12px;
 
   }
@@ -126,6 +121,17 @@
     bottom: 0;
     width: 100%;
   }
+
+
+  .flecha_dxa, .flecha_izd {
+    display: none;
+  }
+
+  .flecha-izqMo, .flecha-dxaMO {
+    display: inline;
+  }
+
+
 
 
 }

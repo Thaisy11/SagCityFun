@@ -90,8 +90,7 @@ function realizarPeticionesRechazadas() {
 }
 function mostrarEventos(datosJSON) {
     console.log(datosJSON);
-    const inicio = (paginaActual - 1) * articulosPorPagina;
-    const fin = inicio + articulosPorPagina;
+
 
     const fechaSeleccionadaString = fechaSeleccionada.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
@@ -120,7 +119,7 @@ function mostrarEventos(datosJSON) {
 
         crearElementoTexto("No hay eventos en esta fecha", 'h2', divSinEventos);
     } else {
-        for (let i = inicio; i < fin && i < eventosDeHoy.length; i++) {
+        for (let i = 0; i < eventosDeHoy.length; i++) {
             let divEvento = crearElemento('article', main);
             crearElementoTexto(eventosDeHoy[i].nombreevento, 'h2', divEvento);
             crearElementoTextoAdicional(eventosDeHoy[i].local, "Local del evento: ", 'h4', divEvento);

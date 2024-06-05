@@ -64,7 +64,7 @@ function validaEmail(campo) {
 
 function realizarPeticiones(usuario) {
     console.log(usuario);
-    let url = '/u/iniciarSesion';
+    let url = '/SaguntoCityFun/u/iniciarSesion';
     fetch(url, {
         method: 'POST',
         headers: {

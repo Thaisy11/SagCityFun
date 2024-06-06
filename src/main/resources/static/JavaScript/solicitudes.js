@@ -166,7 +166,7 @@ function muestraUsuario() {
     console.log(usuario);
     console.log(muestraUsuari);
     if (usuario) {
-        muestraUsuari.textContent = usuario + ", elije tu próximo plan";
+        muestraUsuari.textContent = usuario + ", elige tu próximo plan";
         console.log(usuario);
     }
 }

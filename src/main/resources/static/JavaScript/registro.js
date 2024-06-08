@@ -119,8 +119,8 @@ function validaPass(pass) {
     var expRegEmail = /^(?=.*[0-9])[a-zA-Z0-9]{6,}$/;
     if (!expRegEmail.test(pass.value)) {
         contenido.innerHTML = "";
-        contenido.innerHTML = "Debe introducir una contraseña válida.<br>";
-                contenido.innerHTML += "Mínimo 6 carácteres con al menos un número";
+        contenido.innerHTML = "Debe introducir una contraseña válida.Mínimo 6 carácteres con al menos un número";
+
 
         return false;
     }
@@ -149,12 +149,12 @@ function realizarPeticiones(registro) {
         .then(RegUsuario => {
             console.log('Usuario:', RegUsuario);
             window.location.href = "/SaguntoCityFun/login";
+            onsole.log('Usuario:', usuarioOK);
             Swal.fire({
-                position: "top-end",
+                position: "center",
                 icon: "success",
                 title: "Usuario creado correctamente",
-                showConfirmButton: false,
-                timer: 5500
+                showConfirmButton: true
             })
 
 
@@ -163,7 +163,12 @@ function realizarPeticiones(registro) {
         })
         .catch(error => {
             console.error(error);
-            alert("Error en el Registro. Por favor, inténtelo de nuevo.");
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "No se ha creado el usuario. Prueba de nuevo",
+                showConfirmButton: true
+            });
         });
 
 

@@ -119,15 +119,13 @@ function validaPass(pass) {
     var expRegEmail = /^(?=.*[0-9])[a-zA-Z0-9]{6,}$/;
     if (!expRegEmail.test(pass.value)) {
         contenido.innerHTML = "";
-        contenido.innerHTML = "Debe introducir una contraseña válida.Mínimo 6 carácteres con al menos un número";
+        contenido.innerHTML = "Debe introducir una contraseña válida. Mínimo 6 carácteres con al menos un número";
 
 
         return false;
     }
     return true;
 }
-
-
 function realizarPeticiones(registro) {
     contenido.innerHTML = "";
     console.log(registro);
@@ -143,23 +141,17 @@ function realizarPeticiones(registro) {
             if (!response.ok) {
                 throw new Error(`Error en el registro del usuario. Estado: ${response.status}`);
             }
-
             return response.json();
         })
         .then(RegUsuario => {
-            console.log('Usuario:', RegUsuario);
-            window.location.href = "/SaguntoCityFun/login";
-            onsole.log('Usuario:', usuarioOK);
             Swal.fire({
                 position: "center",
                 icon: "success",
                 title: "Usuario creado correctamente",
                 showConfirmButton: true
-            })
-
-
-
-
+            }).then(() => {
+                window.location.href = "/SaguntoCityFun/login";
+            });
         })
         .catch(error => {
             console.error(error);
@@ -170,10 +162,7 @@ function realizarPeticiones(registro) {
                 showConfirmButton: true
             });
         });
-
-
 }
-
 
 
 function crearElemento(tipo = "", padre = "") {

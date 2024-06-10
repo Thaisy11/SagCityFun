@@ -19,7 +19,7 @@ function cargarPAG() {
     flechaIzquierda.addEventListener('click', retrocederDia);
     flechaDerecha.addEventListener('click', avanzarDia);
     flechaIzquierdaP.addEventListener('click', avanzarDia);
-    flechaDerechaP.addEventListener('click', avanzarDia);
+    flechaDerechaP.addEventListener('click', retrocederDia);
 
 
 }
